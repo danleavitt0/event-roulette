@@ -21,11 +21,6 @@
         res.sendfile('./public/index.html');
     });
 
-    http.createServer(app).listen(app.get('port'), function(){
-      console.log("Express server listening on port " + app.get('port'));
-      process.send && process.send('listening');
-    });
-
     // listen (start app with node server.js) ======================================
     app.listen(app.get('port'), function() {
       console.log("Node app is running at localhost:" + app.get('port'))
