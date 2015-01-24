@@ -17,8 +17,11 @@
 
     app.set('port', (process.env.PORT || 5000))
 
+    app.get('/style.css', function(req,res){
+        res.sendfile('/style.css');
+    })
+
     app.get('*', function(req, res) {
-        console.log(req);
         res.sendfile('./public/index.html');
     });
 
