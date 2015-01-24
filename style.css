@@ -1,0 +1,191 @@
+/* Styles go here */
+
+md-list{
+  background-color:#f5f5f5;
+}
+
+body{
+  background-color:#f5f5f5;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+.pointer {
+  cursor:pointer;
+}
+
+#top-bar{
+  background-color:#333;
+  border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.md-card {
+  min-width: 280px;
+  background-color:#fff;
+  padding:0;
+}
+
+.md-card:hover{
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.5);
+}
+
+.md-tall{
+  background:url('https://d2fijpsef22722.cloudfront.net/photos/massive/847187872-san-francisco.jpg');
+  background-size:cover;
+  background-position:50%;
+  min-width:700px;
+}
+
+.md-tall h1 {
+  font-size:120%;
+}
+
+.box-shadow-menu {
+  position: relative;
+  padding-left: 1.25em;
+  cursor:pointer;
+  z-index:1;
+  height:45px;
+  width:45px;
+  border-radius:50%;
+}
+
+.box-shadow-menu:active {
+  background-color:rgba(0,0,0,0.1);
+}
+
+.box-shadow-menu:hover:before {
+  background: rgba(255,255,255,1);
+  box-shadow: 
+    0 0.25em 0 0 rgba(255,255,255,1),
+    0 0.5em 0 0 rgba(255,255,255,1);
+}
+
+.box-shadow-menu:before {
+  margin:0 auto;
+  cursor:pointer;
+  content: " ";
+  position: absolute;
+  top: 13px;
+  left:0;
+  bottom: 0;
+  right:0;
+  width: 1em;
+  height: 0.15em;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 
+    0 0.25em 0 0 rgba(255,255,255,0.8),
+    0 0.5em 0 0 rgba(255,255,255,0.8);
+}
+
+.md-toolbar-tools-bottom {
+  position:absolute;
+  bottom:0;
+}
+
+.md-raised {
+  padding:15px;
+}
+
+.gradient {
+  background:linear-gradient(to bottom,rgba(0,0,0,0),rgba(0,0,0,0) 50%,rgba(0,0,0,.6) 100%);
+  width:100%;
+  height:100%;
+}
+
+.full-gradient {
+  background:rgba(0,0,0,0.4);
+  width:100%;
+  height:100%;
+  text-align:center;
+}
+
+.white-gradient {
+  background:rgba(255,255,255,0.2);
+  width:100%;
+  height:100%;
+}
+
+.full-gradient h1 {
+  font-size:350%;
+  margin:0;
+}
+
+.full-gradient h4 {
+  font-size:1.5em;
+  margin:0;
+}
+
+.card-title {
+  color:rgba(255,255,255,1);
+  padding:5px 10px;
+  margin:0;
+}
+
+#spin {
+  background-color:#03A9F4;
+  color:rgba(255,255,255,0.8);
+}
+
+#search {
+  background-color:#333;
+  color:rgba(255,255,255,0.8);
+  
+}
+
+.buttons {
+  margin:40px 0;
+}
+
+.md-card {
+  min-width:500px;
+}
+.face {
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  width: 120px;
+  height:120px;
+  margin: 16px auto;
+  overflow:hidden;
+}
+.img-size {
+  height:120px;
+  width:120px;
+  background-size:120px;
+  background-position:50% 50%;
+  background-repeat:no-repeat;
+  /* background-color:rgba(255,128,0,0.2); */
+}
+
+@media all and (min-width:1200px) {
+  .md-tile-content h3 {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+  }
+  #tall-image{
+    max-height:60vh;
+    height:60vh;
+  }
+}
+
+@media all and (max-width:1200px) {
+  body {
+    font-size:150%;
+  }
+  h3 {
+    font-size:130%;
+  }
+  h1{
+    font-size:90%;
+  }
+  .md-sidenav-left{
+    width:400px;
+  }
+  
+}
