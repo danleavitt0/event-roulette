@@ -15,6 +15,8 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
+    app.set('port', (process.env.PORT || 5000))
+
     app.get('*', function(req, res) {
         res.sendfile('./public/index.html');
     });
@@ -25,3 +27,6 @@
     });
 
     // listen (start app with node server.js) ======================================
+    app.listen(app.get('port'), function() {
+      console.log("Node app is running at localhost:" + app.get('port'))
+    });
