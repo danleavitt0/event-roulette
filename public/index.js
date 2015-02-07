@@ -1,4 +1,4 @@
-var app = angular.module('EventbriteWheel', ['ngMaterial']);
+var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate']);
 
 app.filter('LessThanPrice', function(FilterData){
   var filterData = FilterData;
@@ -25,8 +25,21 @@ app.factory('FilterData', function(){
   };
 });
 
-app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location, FilterData){
+app.directive('spinButton', function(){
+  return {
+    templateUrl: 'spin-button.html'
+  }
+});
+
+app.directive('eventCard', function(){
+  return {
+    templateUrl: 'event-card.html'
+  }
+});
+
+app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location, $animate, FilterData){
   $scope.filterData = FilterData;
+  $scope.spinning = false;
   
   var today = new Date();
   var nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -47,18 +60,9 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     });
     return $scope.categoryString = _.keys(clickedCategoriesObj).toString();
   }
-
-  $scope.search = function(){
-    $scope.showLoading = true;
-    $scope.loading = false;
-    $scope.getData(false, 1, function(events){
-      $scope.showLoading = false;
-      $scope.show = true;
-      $scope.events = events;
-    });
-  };
   
-  $scope.spin = function(){
+  $scope.spin = function(cb){
+    cb = cb || function() {};
     $scope.showLoading = true;
     $scope.getData(false, 1, function(events){
       events = $filter('LessThanPrice')(events);
@@ -66,8 +70,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       $scope.events = [];
       var idx = Math.floor(Math.random() * events.length);
       $scope.events[0] = events[idx];
-      $scope.show = true;
-      $scope.loading = true;
+      cb();
     });
   }
   
@@ -106,18 +109,26 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.orderingDate = function(item) {
     return item.start.utc;
   };
-  
-  $scope.hover = function(e) {
-    angular.element(e.srcElement).addClass('cardHover');
-  };
-  
-  $scope.showLoading = true;
-  
-  $scope.getData(true, 1, function(e){
-    $scope.events = e;
-    $scope.show = true;
-    $scope.showLoading = false;
-  });
+
+  $scope.wheelSpin = function(e) {
+    var element = document.getElementById('prism');
+    $scope.spinning = true;
+    $animate.addClass(element, 'animate')
+    .then(function(){
+      $scope.$apply(function(){
+        $scope.found = true;
+        if($scope.events) {
+          $scope.visibleEvent = $scope.events[0];
+          $scope.img = $scope.events[0].logo_url;
+        }
+      });
+      angular.element(element).removeClass('animate');
+    });
+    $scope.spin(function(){
+      $scope.spinning = false;
+      console.log($scope.events);
+    })
+  }
   
 });
 
@@ -138,25 +149,7 @@ app.controller('LeftCtrl', function($scope,$mdSidenav,$log,FilterData){
     if (price === 0)
       return 'free';
     else if (price === 100)
-      return "Fuck it, I'm going big";
+      return "Go big or go home";
     else return '$' + price;
   }
-});
-
-app.directive("scroll", function ($window) {
-  return function(scope, element, attrs) {
-    var element = element;
-    angular.element($window).bind("scroll", function() {
-      if(this.pageYOffset >= (element[0].offsetHeight*0.6) && !scope.loading) {
-        if(scope.pagination.page_number < scope.pagination.page_count) {
-          scope.loading = true;
-          scope.getData(false, ++scope.pagination.page_number, function(e){
-            scope.loading = false;
-            scope.events = _.union(scope.events, e);
-          });
-        }
-      }
-      scope.$apply();
-    });
-  };
 });

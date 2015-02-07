@@ -4,7 +4,6 @@
     var morgan = require('morgan');             // log requests to the console (express4)
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
     var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
-    var http = require('http');
 
     // configuration =================
 
@@ -15,17 +14,22 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
-    app.set('port', (process.env.PORT || 5000))
-
-    app.get('/style.css', function(req,res){
+    app.get('/style.css', function(req, res){
         res.sendfile('style.css');
-    })
+    });
+
+    app.get('/favicon-16x16.png', function(req,res){
+        res.sendfile('favicon-16x16.png');
+    });
+
+    app.get('/public/rouletteWheel.png', function(req,res){
+        res.sendfile('./public/rouletteWheel.png');
+    });
 
     app.get('*', function(req, res) {
         res.sendfile('./public/index.html');
     });
 
     // listen (start app with node server.js) ======================================
-    app.listen(app.get('port'), function() {
-      console.log("Node app is running at localhost:" + app.get('port'))
-    });
+    app.listen(3000);
+    console.log("App listening on port 3000");
