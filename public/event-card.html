@@ -1,0 +1,13 @@
+<md-item-content layout="row" layout-stretch="">
+  <div class="image-container" layout-fill="" layout-align="center" flex="25">
+    <div class="face">
+      <div class="img-size" ng-style="{ 'background-image':'url(' + img + ')' }"></div>
+    </div>
+  </div>
+  <div layout-fill="" flex="75" class="md-tile-content">
+    <h3> {{visibleEvent.name.text}} </h3>
+    <p> {{visibleEvent.ticket_classes[0].cost.display || 'free'}} </p>
+    <h4> {{visibleEvent.start.local | date:'short' }} </h4>
+    <h4> {{visibleEvent.venue.address.address_1}} </h4>
+  </div>
+</md-item-content>
