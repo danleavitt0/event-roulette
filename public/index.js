@@ -63,7 +63,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   
   $scope.spin = function(cb){
     cb = cb || function() {};
-    $scope.showLoading = true;
     $scope.getData(false, 1, function(events){
       events = $filter('LessThanPrice')(events);
       $scope.showLoading = false;
@@ -80,7 +79,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     cb = cb || function(){};
     page = page || 1
     isPopular = isPopular || false;
-    // $scope.showLoading = true;
     $http({
       'method':'GET', 
       'url':'https://www.eventbriteapi.com/v3/events/search/?token=QVLW2KE734XBBN6Q2DOI',
@@ -97,6 +95,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       $scope.showLoading = false;
       events = data.events;
       $scope.pagination = data.pagination;
+      console.log(events);
       cb(events);
     });
     return events;
@@ -112,6 +111,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
 
   $scope.wheelSpin = function(e) {
     var element = document.getElementById('prism');
+    $mdSidenav('left').close();
     $scope.spinning = true;
     $animate.addClass(element, 'animate')
     .then(function(){

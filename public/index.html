@@ -19,77 +19,59 @@
 
     <body ng-controller="SpinWheel">
     <md-container class="container" layout="column">
-      <md-toolbar hide-md hide-sm hide-lg>
+      <md-toolbar>
         <div id="top-bar" class="md-toolbar-tools">
+          <div ng-click="toggleLeft()" class="box-shadow-menu"> </div>
           <h2> San Francisco Eventbrite Search</h2>
         </div>
       </md-toolbar>
       <md-toolbar id="tall-image" class="md-tall">
         <div class="full-gradient" layout="column" layout-align="center center">
             <h1 style="text-align:center"> See Where Yes Takes You </h1>
-            <div spin-button class="button-container" layout="row" layout-align="center" ng-click="wheelSpin($event)"></div>
+            <!-- <a ng-href="{{events[0].url}}" target="_blank"> -->
+              <div spin-button class="button-container" layout="row" layout-align="center" ng-click="wheelSpin($event)"></div>
+            </a>
         </div>
       </md-toolbar>
-  </md-container>
+    </md-container> 
     
-<!--     <md-container layout="row">
-      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-        <md-toolbar hide-gt-lg class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Filter Options</h1>
-        </md-toolbar>
-        <md-content class="md-padding" ng-controller="LeftCtrl">
-          <div class="filter">
-            <h3> Maximum Price: {{filterData.stringPrice()}}</h3>
-            <md-slider min="0" max="100" ng-model="filterData.maxPrice"></md-slider>
-          </div>
-          <div class="filter">
-            <h3> Event Category: </h3>
-            <md-checkbox ng-model="categories[101]" aria-label="Business">
-              Business
-            </md-checkbox>
-            <md-checkbox ng-model="categories[104]" aria-label="Film & Media">
-              Film & Media
-            </md-checkbox>
-            <md-checkbox ng-model="categories[110]" aria-label="Food & Drink">
-              Food & Drink
-            </md-checkbox>
-            <md-checkbox ng-model="categories[107]" aria-label="Health">
-              Health
-            </md-checkbox>
-            <md-checkbox ng-model="categories[103]" aria-label="Music">
-              Music
-            </md-checkbox>
-            <md-checkbox ng-model="categories[105]" aria-label="Arts">
-              Arts
-            </md-checkbox>
-            <md-checkbox ng-model="categories[119]" aria-label="Hobbies">
-              Hobbies
-            </md-checkbox>
-            <md-checkbox ng-model="categories[111]" aria-label="Charity & Causes">
-              Charity & Causes
-            </md-checkbox>
-            <md-checkbox ng-model="categories[109]" aria-label="Travel & Outdoor">
-              Travel & Outdoor
-            </md-checkbox>
-            <md-checkbox ng-model="categories[115]" aria-label="Family & Education">
-              Family & Education
-            </md-checkbox>
-            <md-checkbox ng-model="categories[108]" aria-label="Sports & Fitness">
-              Sports & Fitness
-            </md-checkbox>
-            
-          </div>
-          <div class="buttons" layout="row" layout-fill layout-align="space-around center">
-            <md-button ng-click="search()" id="search" class="md-raised"> Search </md-button>
-            <md-button ng-click="spin()" id="spin" class="md-raised">Spin Wheel</md-button>
-          </div>
-          <md-button ng-click="close()" class="md-primary" hide-gt-md>
-            Close Filter Options
-          </md-button>
-        </md-content>
-      </md-sidenav>
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+      <md-toolbar class="md-theme-indigo">
+        <h1 class="md-toolbar-tools">Filter Options</h1>
+      </md-toolbar>
+      <md-content class="md-padding" ng-controller="LeftCtrl">
+        <div class="filter">
+          <h3> Event Category: </h3>
+          <md-checkbox ng-model="categories[104]" aria-label="Film & Media">
+            Film & Media
+          </md-checkbox>
+          <md-checkbox ng-model="categories[110]" aria-label="Food & Drink">
+            Food & Drink
+          </md-checkbox>
+          <md-checkbox ng-model="categories[103]" aria-label="Music">
+            Music
+          </md-checkbox>
+          <md-checkbox ng-model="categories[105]" aria-label="Arts">
+            Arts & Entertainment
+          </md-checkbox>
+          <md-checkbox ng-model="categories[109]" aria-label="Travel & Outdoor">
+            Travel & Outdoor
+          </md-checkbox>
+          <md-checkbox ng-model="categories[108]" aria-label="Sports & Fitness">
+            Sports & Fitness
+          </md-checkbox>
+        </div>
+        <div class="filter">
+          <h3> Maximum Price: {{filterData.stringPrice()}}</h3>
+          <md-slider min="0" max="100" ng-model="filterData.maxPrice"></md-slider>
+        </div>
+        <div class="buttons" layout="row" layout-fill layout-align="space-around center">
+          <md-button ng-click="wheelSpin()" id="search" class="md-raised"> Spin </md-button>
+        </div>
+      </md-content>
+    </md-sidenav>
       
-      <md-container layout="row" layout-align="space-around center" ng-show="showLoading" flex>
+<!--       <md-container layout="row" layout-align="space-around center" ng-show="showLoading" flex>
         <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
       </md-container>
       

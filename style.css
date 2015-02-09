@@ -14,10 +14,10 @@ a {
 }
 
 .animate {
-  -webkit-transition:all cubic-bezier(.65,.02,.29,1) 8s !important;
-  -moz-transition:all cubic-bezier(.65,.02,.29,1) 8s !important;
-  -o-transition:all cubic-bezier(.65,.02,.29,1) 8s !important;
-  transition:all cubic-bezier(.65,.02,.29,1) 8s !important;
+  -webkit-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
+  -moz-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
+  -o-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
+  transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
   -webkit-transform:rotateX(-900deg) !important;
   -moz-transform:rotateX(-900deg) !important;
   -o-transform:rotateX(-900deg) !important;
@@ -65,12 +65,12 @@ a {
 
 .box-shadow-menu {
   position: relative;
-  padding-left: 1.25em;
-  cursor:pointer;
-  z-index:1;
-  height:45px;
-  width:45px;
-  border-radius:50%;
+  cursor: pointer;
+  z-index: 1;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  right: 0;
 }
 
 .box-shadow-menu:active {
@@ -89,7 +89,7 @@ a {
   cursor:pointer;
   content: " ";
   position: absolute;
-  top: 13px;
+  top: 16px;
   left:0;
   bottom: 0;
   right:0;
@@ -199,6 +199,20 @@ a {
 
 figure {
   margin:0;
+}
+
+.hover {
+  -webkit-transform: translateZ( 10px ); 
+  -moz-transform: translateZ( 10px ); 
+  -o-transform: translateZ( 10px );
+  -ms-transform: translateZ( 10px ); 
+}
+
+.no-hover {
+  -webkit-transform: translateZ( 0px ); 
+  -moz-transform: translateZ( 0px ); 
+  -o-transform: translateZ( 0px );
+  -ms-transform: translateZ( 0px ); 
 }
 
 .spin-container {
