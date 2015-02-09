@@ -1,4 +1,4 @@
-var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate']);
+var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap']);
 
 app.filter('LessThanPrice', function(FilterData){
   var filterData = FilterData;
@@ -40,6 +40,7 @@ app.directive('eventCard', function(){
 app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location, $animate, FilterData){
   $scope.filterData = FilterData;
   $scope.spinning = false;
+  $scope.date = "Choose Date";
   
   var today = new Date();
   var nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -60,6 +61,25 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     });
     return $scope.categoryString = _.keys(clickedCategoriesObj).toString();
   }
+
+  function getDate() {
+    switch(FilterData.date) {
+      case 'Today':
+        return 'today';
+        break;
+      case 'This Week':
+        return 'this_week';
+        break;
+      case 'This Weekend':
+        return 'this_weekend';
+        break;
+      case 'This Month':
+        return 'this_month';
+        break;
+      default:
+        return 'this_week';
+    }
+  }
   
   $scope.spin = function(cb){
     cb = cb || function() {};
@@ -76,6 +96,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.getData = function(isPopular, page, cb){
     var categories = categoriesToArray();
     var events;
+    var date = getDate();
     cb = cb || function(){};
     page = page || 1
     isPopular = isPopular || false;
@@ -85,11 +106,14 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       'params':{
         'venue.city':'San Francisco',
         'start_date.range_start':today,
-        'start_date.range_end':nextWeek,
+        'start_date.keyword':date,
         'categories':categories,
         'popular':isPopular,
         'page':page
-        }
+      },
+      'config':{
+        'cache':true
+      }
     })
     .success(function(data,status,headers,config) {
       $scope.showLoading = false;
@@ -140,6 +164,7 @@ app.controller('LeftCtrl', function($scope,$mdSidenav,$log,FilterData){
    
   $scope.$watch('categories', function(){
     $scope.filterData.categories = $scope.categories;
+    $scope.filterData.date = $scope.date;
   }, true) 
    
   $scope.filterData = FilterData;   

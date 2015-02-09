@@ -26,6 +26,10 @@
         res.sendfile('./public/rouletteWheel.png');
     });
 
+    app.get('/bower_compnents/angular-bootstrap/ui.bootstrap.min.js', function(req,res){
+        res.sendfile('bower_components/angular-bootstrap/ui-bootstrap.min.js');
+    })
+
     app.get('*', function(req, res) {
         res.sendfile('./public/index.html');
     });

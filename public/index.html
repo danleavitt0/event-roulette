@@ -6,11 +6,15 @@
     <script data-require="angular.js@*" data-semver="1.3.7" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.7/angular.js"></script>
     <script data-require="underscore.js@*" data-semver="1.6.0" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script data-require="lodash.js@*" data-semver="2.4.1" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="//cdn.jsdelivr.net/satellizer/0.8.7/satellizer.min.js"></script>
     <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
+    <script src="/bower_compnents/angular-bootstrap/ui.bootstrap.min.js"></script>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -18,7 +22,7 @@
   </head>
 
     <body ng-controller="SpinWheel">
-    <md-container class="container" layout="column">
+    <md-container class="page-container" layout="column">
       <md-toolbar>
         <div id="top-bar" class="md-toolbar-tools">
           <div ng-click="toggleLeft()" class="box-shadow-menu"> </div>
@@ -41,15 +45,31 @@
       </md-toolbar>
       <md-content class="md-padding" ng-controller="LeftCtrl">
         <div class="filter">
+          <h3> When: </h3>
+          <div class="btn-group" dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+              {{filterData.date}}
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li><a ng-click="filterData.date = 'Choose Date'">Any</a></li>
+              <li><a ng-click="filterData.date = 'Today'">Today</a></li>
+              <li><a ng-click="filterData.date = 'This Week'">This Week</a></li>
+              <li><a ng-click="filterData.date = 'This Weekend'">This Weekend</a></li>
+              <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="filter">
           <h3> Event Category: </h3>
-          <md-checkbox ng-model="categories[104]" aria-label="Film & Media">
-            Film & Media
-          </md-checkbox>
           <md-checkbox ng-model="categories[110]" aria-label="Food & Drink">
             Food & Drink
           </md-checkbox>
           <md-checkbox ng-model="categories[103]" aria-label="Music">
             Music
+          </md-checkbox>
+          <md-checkbox ng-model="categories[104]" aria-label="Film & Media">
+            Film & Media
           </md-checkbox>
           <md-checkbox ng-model="categories[105]" aria-label="Arts">
             Arts & Entertainment
@@ -70,32 +90,5 @@
         </div>
       </md-content>
     </md-sidenav>
-      
-<!--       <md-container layout="row" layout-align="space-around center" ng-show="showLoading" flex>
-        <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
-      </md-container>
-      
-      <md-list scroll flex ng-hide="showLoading" layout="row" layout-gt-lg="row" layout-align="center center" layout-wrap>
-          <md-card flex="80" flex-gt-lg="66" layout-align="center" class="md-card" ng-repeat="item in events | orderBy: orderingDate |  LessThanPrice ">
-          <a class="pointer" target="_blank" ng-href={{item.url}}>
-            <md-item>
-              <md-item-content layout="row" layout-stretch>
-                <div class="image-container" layout-fill layout-align="center" flex="25">
-                  <div class="face">
-                    <div class="img-size" ng-style="{ 'background-image':'url({{item.logo_url || 'http://tadhg.com/images/design/seamless/ancientblue.jpg'}})' }"></div>
-                  </div>
-                </div>
-                <div layout-fill flex="75" class="md-tile-content">
-                  <h3> {{item.name.text}} </h3>
-                  <p> {{item.ticket_classes[0].cost.display || 'free'}} </p>
-                  <h4> {{item.start.local | date:'short' }} </h4>
-                  <h4> {{item.venue.address.address_1}} </h4>
-                </div>
-              </md-item-content>
-            </md-item>
-          </a>
-        </md-card>
-      </md-list>
-    </md-container> -->
   </body>
 </html>
