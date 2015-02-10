@@ -124,9 +124,9 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     return events;
   };
     
-  $scope.toggleLeft = function() {
-    $mdSidenav('left').toggle();
-  };
+  // $scope.toggleLeft = function() {
+  //   $mdSidenav('left').toggle();
+  // };
   
   $scope.orderingDate = function(item) {
     return item.start.utc;
@@ -155,28 +155,28 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   
 });
 
-app.controller('LeftCtrl', function($scope,$mdSidenav,$log,FilterData){
+// app.controller('LeftCtrl', function($scope,$mdSidenav,$log,FilterData){
   
-  $scope.close = function() {
-    $mdSidenav('left').close();
-  };
+//   $scope.close = function() {
+//     $mdSidenav('left').close();
+//   };
    
-  $scope.$watch('categories', function(){
-    $scope.filterData.categories = $scope.categories;
-  }, true) 
+//   $scope.$watch('categories', function(){
+//     $scope.filterData.categories = $scope.categories;
+//   }, true) 
 
-  $scope.$watch('date', function(){
-    $scope.filterData.date = $scope.date;
-  }, true)
+//   $scope.$watch('date', function(){
+//     $scope.filterData.date = $scope.date;
+//   }, true)
    
-  $scope.filterData = FilterData;   
-  $scope.filterData.stringPrice = function() {
-    var price = $scope.filterData.maxPrice || 0;
-    $scope.filterData.priceValue = $scope.filterData.maxPrice * 100;
-    if (price === 0)
-      return 'free';
-    else if (price === 100)
-      return "Go big or go home";
-    else return '$' + price;
-  }
-});
+//   $scope.filterData = FilterData;   
+//   $scope.filterData.stringPrice = function() {
+//     var price = $scope.filterData.maxPrice || 0;
+//     $scope.filterData.priceValue = $scope.filterData.maxPrice * 100;
+//     if (price === 0)
+//       return 'free';
+//     else if (price === 100)
+//       return "Go big or go home";
+//     else return '$' + price;
+//   }
+// });

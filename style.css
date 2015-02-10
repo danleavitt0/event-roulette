@@ -13,6 +13,11 @@ a {
   text-decoration:none;
 }
 
+.filter span {
+  font-weight: 400;
+  font-size: 15px;
+}
+
 .animate {
   -webkit-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
   -moz-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
@@ -63,6 +68,10 @@ a {
   font-size:120%;
 }
 
+.full-gradient h1 {
+  text-shadow:1px 1px rgba(0,0,0,0.2);
+}
+
 .box-shadow-menu {
   position: relative;
   cursor: pointer;
@@ -89,12 +98,12 @@ a {
   cursor:pointer;
   content: " ";
   position: absolute;
-  top: 16px;
+  top: 17px;
   left:0;
   bottom: 0;
   right:0;
   width: 1em;
-  height: 0.15em;
+  height: 0.1em;
   background: rgba(255,255,255,0.8);
   box-shadow: 
     0 0.25em 0 0 rgba(255,255,255,0.8),
@@ -170,6 +179,7 @@ a {
   height:120px;
   margin: 16px auto;
   overflow:hidden;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,.2);
 }
 .img-size {
   height:120px;
@@ -284,6 +294,25 @@ figure {
   width:600px;
 }
 
+.btn-group {
+  vertical-align: baseline;
+}
+
+.dropdown-menu a {
+  cursor: pointer;
+}
+
+.btn-group .option {
+  color:#33CCFF !important;
+  border-bottom:1px dotted #33CCFF;
+  font-size:22px;
+  vertical-align: baseline;
+}
+
+#top-bar h2 {
+  font-size:22px;
+}
+
 #prism figure {
   display: block;
   position: absolute;
@@ -297,6 +326,18 @@ figure {
   border-radius:3px;
   margin:0;
   box-sizing:border-box;
+}
+
+md-toolbar {
+  position:relative;
+}
+
+md-toolbar#top-view {
+  z-index:999;
+}
+
+.md-tile-content {
+  text-shadow:1px 1px rgba(0,0,0,0.2);
 }
 
 .md-tile-content h3 {

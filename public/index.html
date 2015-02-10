@@ -23,10 +23,42 @@
 
     <body ng-controller="SpinWheel">
     <md-container class="page-container" layout="column">
-      <md-toolbar>
+      <md-toolbar id="top-view">
         <div id="top-bar" class="md-toolbar-tools">
-          <div ng-click="toggleLeft()" class="box-shadow-menu"> </div>
-          <h2> San Francisco Eventbrite Search</h2>
+          <!-- <div ng-click="toggleLeft()" class="box-shadow-menu"> </div> -->
+          <h2> Find your next 
+          <span>
+            <div class="btn-group" dropdown>
+              <md-button ng-init="filterData.categories = 'Food & Drink'" type="button" class="dropdown-toggle option" dropdown-toggle>
+                {{filterData.categories}}
+                <span class="caret"></span>
+              </md-button>
+              <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="filterData.categories = 'Food & Drink'">Food & Drink</a></li>
+                <li><a ng-click="filterData.categories = 'Music'">Music</a></li>
+                <li><a ng-click="filterData.categories = 'Film & Media'">Film & Media</a></li>
+                <li><a ng-click="filterData.categories = 'Arts & Entertainment'">Arts & Entertainment</a></li>
+                <li><a ng-click="filterData.categories = 'Travel & Outdoor'">Travel & Outdoor</a></li>
+                <li><a ng-click="filterData.categories = 'Sports & Fitness<'">Sports & Fitness</a></li>
+              </ul>
+            </div>
+          </span> 
+          experience in San Francisco 
+          <span>
+          <div class="btn-group" dropdown is-open="status.isopen">
+            <md-button ng-init="filterData.date = 'This Week'" type="button" class="dropdown-toggle option" dropdown-toggle>
+              {{filterData.date}}
+              <span class="caret"></span>
+            </md-button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a ng-click="filterData.date = 'Any Time'">Any Time</a></li>
+                <li><a ng-click="filterData.date = 'Today'">Today</a></li>
+                <li><a ng-click="filterData.date = 'This Week'">This Week</a></li>
+                <li><a ng-click="filterData.date = 'This Weekend'">This Weekend</a></li>
+                <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
+            </ul>
+          </div>
+          </span> </h2>
         </div>
       </md-toolbar>
       <md-toolbar id="tall-image" class="md-tall">
@@ -39,7 +71,7 @@
       </md-toolbar>
     </md-container> 
     
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+    <!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
       <md-toolbar class="md-theme-indigo">
         <h1 class="md-toolbar-tools">Filter Options</h1>
       </md-toolbar>
@@ -82,13 +114,13 @@
           </md-checkbox>
         </div>
         <div class="filter">
-          <h3> Maximum Price: {{filterData.stringPrice()}}</h3>
+          <h3> Maximum Price: <span>{{filterData.stringPrice()}}</span></h3>
           <md-slider min="0" max="100" ng-model="filterData.maxPrice"></md-slider>
         </div>
         <div class="buttons" layout="row" layout-fill layout-align="space-around center">
-          <md-button ng-click="wheelSpin()" id="search" class="md-raised"> Spin </md-button>
+          <md-button flex ng-click="wheelSpin()" id="search" class="md-raised"> Spin </md-button>
         </div>
       </md-content>
-    </md-sidenav>
+    </md-sidenav> -->
   </body>
 </html>
