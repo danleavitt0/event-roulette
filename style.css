@@ -302,6 +302,11 @@ figure {
   cursor: pointer;
 }
 
+.dropdown-menu>li>a {
+  padding: 5px 20px;
+  font-size:18px;
+}
+
 .btn-group .option {
   color:#33CCFF !important;
   border-bottom:1px dotted #33CCFF;
