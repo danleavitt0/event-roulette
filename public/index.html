@@ -29,17 +29,17 @@
           <h2> Find your next 
           <span>
             <div class="btn-group" dropdown>
-              <md-button ng-init="filterData.categories = 'Food & Drink'" type="button" class="dropdown-toggle option" dropdown-toggle>
-                {{filterData.categories}}
+              <md-button ng-init="category = 'Food & Drink'" type="button" class="dropdown-toggle option" dropdown-toggle>
+                {{category}}
                 <span class="caret"></span>
               </md-button>
               <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="filterData.categories = 'Food & Drink'">Food & Drink</a></li>
-                <li><a ng-click="filterData.categories = 'Music'">Music</a></li>
-                <li><a ng-click="filterData.categories = 'Film & Media'">Film & Media</a></li>
-                <li><a ng-click="filterData.categories = 'Arts & Entertainment'">Arts & Entertainment</a></li>
-                <li><a ng-click="filterData.categories = 'Travel & Outdoor'">Travel & Outdoor</a></li>
-                <li><a ng-click="filterData.categories = 'Sports & Fitness<'">Sports & Fitness</a></li>
+                <li><a ng-click="category = 'Food & Drink'; filterData.categoryCode = 110">Food & Drink</a></li>
+                <li><a ng-click="category = 'Music'; filterData.categoryCode = 103">Music</a></li>
+                <li><a ng-click="category = 'Film & Media'; filterData.categoryCode = 104">Film & Media</a></li>
+                <li><a ng-click="category = 'Arts & Entertainment'; filterData.categoryCode = 105">Arts & Entertainment</a></li>
+                <li><a ng-click="category = 'Travel & Outdoor'; filterData.categoryCode = 109">Travel & Outdoor</a></li>
+                <li><a ng-click="category = 'Sports & Fitness'; filterData.categoryCode = 108">Sports & Fitness</a></li>
               </ul>
             </div>
           </span> 

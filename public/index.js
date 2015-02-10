@@ -21,7 +21,7 @@ app.factory('FilterData', function(){
   return {
     maxPrice:0,
     priceValue:0,
-    categories:[]
+    categoryCode:[103,104,105,108,109,110]
   };
 });
 
@@ -52,14 +52,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     d = d.toISOString();
     var r = d.slice(19,23);
     return d.replace(r,'');
-  }
-  
-  function categoriesToArray() {
-    var categories = $scope.filterData.categories;
-    clickedCategoriesObj = _.pick(categories, function(value,key) { 
-      return value === true;
-    });
-    return $scope.categoryString = _.keys(clickedCategoriesObj).toString();
   }
 
   function getDate() {
@@ -94,9 +86,10 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   }
   
   $scope.getData = function(isPopular, page, cb){
-    var categories = categoriesToArray();
+    var categories = $scope.filterData.categoryCode.toString();
     var events;
     var date = getDate();
+    console.log(date, categories);
     cb = cb || function(){};
     page = page || 1;
     isPopular = isPopular || false;
@@ -134,7 +127,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
 
   $scope.wheelSpin = function(e) {
     var element = document.getElementById('prism');
-    $mdSidenav('left').close();
     $scope.spinning = true;
     $animate.addClass(element, 'animate')
     .then(function(){
