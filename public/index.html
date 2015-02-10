@@ -14,7 +14,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
-    <script src="/bower_compnents/angular-bootstrap/ui.bootstrap.min.js"></script>
+    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -47,10 +47,10 @@
         <div class="filter">
           <h3> When: </h3>
           <div class="btn-group" dropdown is-open="status.isopen">
-            <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+            <md-button type="button" class="dropdown-toggle" dropdown-toggle>
               {{filterData.date}}
               <span class="caret"></span>
-            </button>
+            </md-button>
             <ul class="dropdown-menu" role="menu">
               <li><a ng-click="filterData.date = 'Choose Date'">Any</a></li>
               <li><a ng-click="filterData.date = 'Today'">Today</a></li>

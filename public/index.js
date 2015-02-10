@@ -98,7 +98,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     var events;
     var date = getDate();
     cb = cb || function(){};
-    page = page || 1
+    page = page || 1;
     isPopular = isPopular || false;
     $http({
       'method':'GET', 
@@ -119,7 +119,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       $scope.showLoading = false;
       events = data.events;
       $scope.pagination = data.pagination;
-      console.log(events);
       cb(events);
     });
     return events;
@@ -164,8 +163,11 @@ app.controller('LeftCtrl', function($scope,$mdSidenav,$log,FilterData){
    
   $scope.$watch('categories', function(){
     $scope.filterData.categories = $scope.categories;
-    $scope.filterData.date = $scope.date;
   }, true) 
+
+  $scope.$watch('date', function(){
+    $scope.filterData.date = $scope.date;
+  }, true)
    
   $scope.filterData = FilterData;   
   $scope.filterData.stringPrice = function() {

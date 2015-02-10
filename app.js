@@ -14,24 +14,8 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
-    app.get('/style.css', function(req, res){
-        res.sendfile('style.css');
-    });
-
-    app.get('/favicon-16x16.png', function(req,res){
-        res.sendfile('favicon-16x16.png');
-    });
-
-    app.get('/public/rouletteWheel.png', function(req,res){
-        res.sendfile('./public/rouletteWheel.png');
-    });
-
-    app.get('/bower_compnents/angular-bootstrap/ui.bootstrap.min.js', function(req,res){
-        res.sendfile('bower_components/angular-bootstrap/ui-bootstrap.min.js');
-    })
-
     app.get('*', function(req, res) {
-        res.sendfile('./public/index.html');
+        res.sendfile('./' + req.url);
     });
 
     // listen (start app with node server.js) ======================================
