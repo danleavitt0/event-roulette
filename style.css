@@ -40,6 +40,9 @@ a {
 #top-bar{
   background-color:#333;
   border-bottom: 1px solid rgba(255,255,255,0.3);
+  height:100px;
+  min-height:100px;
+  max-height:100px;
 }
 
 .md-card {
@@ -159,8 +162,8 @@ a {
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
   cursor:pointer;
   background-color:tomato;
-  height:150px;
-  width: 600px;
+  height:200px;
+  width: 800px;
   backface-visibility:hidden;
 }
 
@@ -175,16 +178,16 @@ a {
 .face {
   border-radius: 50%;
   border: 1px solid #ddd;
-  width: 120px;
-  height:120px;
+  width: 160px;
+  height:160px;
   margin: 16px auto;
   overflow:hidden;
   box-shadow: 0 0 5px 0 rgba(0,0,0,.2);
 }
 .img-size {
-  height:120px;
-  width:120px;
-  background-size:120px;
+  height:160px;
+  width:160px;
+  background-size:160px;
   background-position:50% 50%;
   background-repeat:no-repeat;
   /* background-color:rgba(255,128,0,0.2); */
@@ -228,8 +231,8 @@ figure {
 .spin-container {
   box-sizing:border-box;
   -webkt-box-sizing:border-box;
-  width: 600px;
-  height: 150px;
+  width: 800px;
+  height: 200px;
   background:#333;
   position: relative;
   -webkit-perspective: 1000px;
@@ -245,8 +248,8 @@ figure {
   -ms-transform: rotateY(   0deg ) translateZ( 5px ); 
   transform: rotateY( 0deg ) translateZ( 5px ); 
   
-  width:600px;
-  height:150px;
+  width:800px;
+  height:200px;
 }
 #prism .back   { 
   -webkit-transform: rotateX( 180deg ) translateZ( 5px ); 
@@ -254,8 +257,8 @@ figure {
   -o-transform: rotateX( 180deg ) translateZ( 5px ); 
   -ms-transform: rotateX( 180deg ) translateZ( 5px ); 
   transform: rotateX( 180deg ) translateZ( 5px ); 
-  width:600px;
-  height:150px;
+  width:800px;
+  height:200px;
 }
 #prism .right  { 
   -webkit-transform: rotateY(  90deg ) translateZ( 595px );
@@ -263,7 +266,7 @@ figure {
   -o-transform: rotateY(  90deg ) translateZ( 595px );
   -ms-transform: rotateY(  90deg ) translateZ( 595px );
   transform: rotateY(  90deg ) translateZ( 595px ); 
-  height:150px;
+  height:200px;
   width:10px;
 }
 #prism .left   { 
@@ -272,7 +275,7 @@ figure {
   -o-transform: rotateY( -90deg ) translateZ( 5px );
   -ms-transform: rotateY( -90deg ) translateZ( 5px );
   transform: rotateY( -90deg ) translateZ( 5px ); 
-  height:150px;
+  height:200px;
   width:10px;
 }
 #prism .top    { 
@@ -282,7 +285,7 @@ figure {
   -ms-transform: rotateX(  90deg ) translateZ( 5px ); 
   transform: rotateX(  90deg ) translateZ( 5px ); 
   height:10px;
-  width:600px;
+  width:800px;
 }
 #prism .bottom { 
   -webkit-transform: rotateX( -90deg ) translateZ( 145px ); 
@@ -291,7 +294,7 @@ figure {
   -ms-transform: rotateX( -90deg ) translateZ( 145px ); 
   transform: rotateX( -90deg ) translateZ( 145px ); 
   height:10px;
-  width:600px;
+  width:800px;
 }
 
 .btn-group {
@@ -309,9 +312,12 @@ figure {
 
 .btn-group .option {
   color:#33CCFF !important;
-  border-bottom:1px dotted #33CCFF;
   font-size:22px;
   vertical-align: baseline;
+}
+
+.btn-group .option span {
+  border-bottom:1px dashed #33CCFF;
 }
 
 #top-bar h2 {
