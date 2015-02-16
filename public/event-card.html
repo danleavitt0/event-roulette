@@ -1,8 +1,6 @@
 <md-item-content class="full-height" layout="row">
   <div class="md-tile-content">
     <h3 style="font-size:1.4em"> {{visibleEvent.name.text}} </h3>
-    <h4 style="font-size:1.1em"> {{visibleEvent.start.local | date:"MMMM d 'at' h:mm a" }} </h4>
-    </br>
-    <p style="font-size:.9em"> {{visibleEvent.ticket_classes[0].cost.display || 'free'}} </p>
+    <h4 style="font-size:1.1em"> {{visibleEvent.start.local | date:"MMMM d 'at' h:mm a" }}: {{visibleEvent.ticket_classes[0].cost.display || 'free'}} </h4>
   </div>
 </md-item-content>
