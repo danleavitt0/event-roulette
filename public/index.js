@@ -128,6 +128,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.wheelSpin = function(e) {
     var element = document.getElementById('prism');
     $scope.spinning = true;
+    $scope.isDisabled = true;
     $animate.addClass(element, 'animate')
     .then(function(){
       $scope.$apply(function(){

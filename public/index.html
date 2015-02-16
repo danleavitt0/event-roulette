@@ -61,7 +61,7 @@
       </md-toolbar>
       <md-toolbar id="tall-image" class="md-tall">
         <div class="full-gradient" layout="column" layout-align="center center">
-          <div spin-button class="button-container" layout="column" layout-align="center"></div>
+          <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
         </div>
       </md-toolbar>
     </md-container> 

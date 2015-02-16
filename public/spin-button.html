@@ -5,9 +5,9 @@
         <h1 ng-hide="found">Say Yes</h1>
         <div event-card id="event-card" ng-if="found">
         </div>
-        <div class="event-buttons">
+        <div ng-show="visibleEvent" class="event-buttons">
           <a style="display:inline-block;" target="_blank" ng-href="{{visibleEvent.url}}"> 
-            <md-button class="pointer" ng-show="visibleEvent">Learn More</md-button>
+            <md-button class="pointer">Learn More</md-button>
           </a> 
           <md-button class="pointer" ng-click="wheelSpin($event)"> Spin </md-button>
         </div>
