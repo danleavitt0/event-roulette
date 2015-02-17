@@ -5,7 +5,6 @@ app.filter('LessThanPrice', function(FilterData){
   var cost = 0;
   return function(item) {
     var filtered = [];
-    console.log('filter');
     if(_.isArray(item)){
       _.each(item, function(el){
         if(el.ticket_classes[0])
@@ -42,6 +41,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.filterData = FilterData;
   $scope.spinning = false;
   $scope.date = "Choose Date";
+  $scope.usedEvents = [];
   
   var today = new Date();
   var nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
@@ -77,11 +77,19 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.spin = function(cb){
     cb = cb || function() {};
     $scope.getData(false, 1, function(events){
-      events = $filter('LessThanPrice')(events);
       $scope.showLoading = false;
       $scope.events = [];
+      events = $filter('LessThanPrice')(events);
+      events = _.reject(events, function(obj,idx){
+        for(var i = 0; i < $scope.usedEvents.length; i++) {
+          if ( _.isEqual(obj, $scope.usedEvents[i])) {
+            return obj;
+          }
+        }
+      });
       var idx = Math.floor(Math.random() * events.length);
       $scope.events[0] = events[idx];
+      $scope.usedEvents.push(events[idx]);
       cb();
     });
   }
@@ -90,13 +98,13 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     var categories = $scope.filterData.categoryCode.toString();
     var events;
     var date = getDate();
-    console.log(date, categories);
     cb = cb || function(){};
     page = page || 1;
     isPopular = isPopular || false;
     $http({
       'method':'GET', 
       'url':'https://www.eventbriteapi.com/v3/events/search/?token=QVLW2KE734XBBN6Q2DOI',
+      'cache':true,
       'params':{
         'venue.city':'San Francisco',
         'start_date.range_start':today,
@@ -104,9 +112,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
         'categories':categories,
         'popular':isPopular,
         'page':page
-      },
-      'config':{
-        'cache':true
       }
     })
     .success(function(data,status,headers,config) {
@@ -118,10 +123,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     return events;
   };
     
-  // $scope.toggleLeft = function() {
-  //   $mdSidenav('left').toggle();
-  // };
-  
   $scope.orderingDate = function(item) {
     return item.start.utc;
   };
@@ -143,34 +144,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     });
     $scope.spin(function(){
       $scope.spinning = false;
-      console.log($scope.events);
     })
   }
   
 });
-
-// app.controller('LeftCtrl', function($scope,$mdSidenav,$log,FilterData){
-  
-//   $scope.close = function() {
-//     $mdSidenav('left').close();
-//   };
-   
-//   $scope.$watch('categories', function(){
-//     $scope.filterData.categories = $scope.categories;
-//   }, true) 
-
-//   $scope.$watch('date', function(){
-//     $scope.filterData.date = $scope.date;
-//   }, true)
-   
-//   $scope.filterData = FilterData;   
-//   $scope.filterData.stringPrice = function() {
-//     var price = $scope.filterData.maxPrice || 0;
-//     $scope.filterData.priceValue = $scope.filterData.maxPrice * 100;
-//     if (price === 0)
-//       return 'free';
-//     else if (price === 100)
-//       return "Go big or go home";
-//     else return '$' + price;
-//   }
-// });
