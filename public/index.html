@@ -25,41 +25,43 @@
     <md-container class="page-container" layout="column">
       <md-toolbar id="tall-image" class="md-tall">
         <div class="full-gradient" layout="column" layout-align="center center">
-        <h2> Find your next 
-          <span>
-            <div class="btn-group" dropdown>
-              <md-button ng-init="category = 'Food & Drink'" type="button" class="dropdown-toggle option" dropdown-toggle>
+        <div>
+          <h2> Find your next 
+            <span>
+              <div class="btn-group" dropdown>
+                <md-button ng-init="category = 'Food & Drink'" type="button" class="dropdown-toggle option" dropdown-toggle>
                 {{category}}
+                </md-button>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a ng-click="category = 'Food & Drink'; filterData.categoryCode = 110">Food & Drink</a></li>
+                  <li><a ng-click="category = 'Music'; filterData.categoryCode = 103">Music</a></li>
+                  <li><a ng-click="category = 'Film & Media'; filterData.categoryCode = 104">Film & Media</a></li>
+                  <li><a ng-click="category = 'Arts & Entertainment'; filterData.categoryCode = 105">Arts & Entertainment</a></li>
+                  <li><a ng-click="category = 'Travel & Outdoor'; filterData.categoryCode = 109">Travel & Outdoor</a></li>
+                  <li><a ng-click="category = 'Sports & Fitness'; filterData.categoryCode = 108">Sports & Fitness</a></li>
+                </ul>
+              </div>
+            </span> 
+            experience
+            </h2>
+            <h2> 
+            in San Francisco 
+            <span>
+            <div class="btn-group" dropdown is-open="status.isopen">
+              <md-button ng-init="filterData.date = 'This Week'" type="button" class="dropdown-toggle option" dropdown-toggle>
+                {{filterData.date}}
               </md-button>
               <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="category = 'Food & Drink'; filterData.categoryCode = 110">Food & Drink</a></li>
-                <li><a ng-click="category = 'Music'; filterData.categoryCode = 103">Music</a></li>
-                <li><a ng-click="category = 'Film & Media'; filterData.categoryCode = 104">Film & Media</a></li>
-                <li><a ng-click="category = 'Arts & Entertainment'; filterData.categoryCode = 105">Arts & Entertainment</a></li>
-                <li><a ng-click="category = 'Travel & Outdoor'; filterData.categoryCode = 109">Travel & Outdoor</a></li>
-                <li><a ng-click="category = 'Sports & Fitness'; filterData.categoryCode = 108">Sports & Fitness</a></li>
+                  <li><a ng-click="filterData.date = 'Any Time'">Any Time</a></li>
+                  <li><a ng-click="filterData.date = 'Today'">Today</a></li>
+                  <li><a ng-click="filterData.date = 'This Week'">This Week</a></li>
+                  <li><a ng-click="filterData.date = 'This Weekend'">This Weekend</a></li>
+                  <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
               </ul>
             </div>
-          </span> 
-          experience
-          </h2>
-          <h2> 
-          in San Francisco 
-          <span>
-          <div class="btn-group" dropdown is-open="status.isopen">
-            <md-button ng-init="filterData.date = 'This Week'" type="button" class="dropdown-toggle option" dropdown-toggle>
-              {{filterData.date}}
-            </md-button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a ng-click="filterData.date = 'Any Time'">Any Time</a></li>
-                <li><a ng-click="filterData.date = 'Today'">Today</a></li>
-                <li><a ng-click="filterData.date = 'This Week'">This Week</a></li>
-                <li><a ng-click="filterData.date = 'This Weekend'">This Weekend</a></li>
-                <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
-            </ul>
+            </span> 
+            </h2>
           </div>
-          </span> 
-          </h2>
           <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
         </div>
       </md-toolbar>

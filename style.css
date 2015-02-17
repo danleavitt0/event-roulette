@@ -218,6 +218,10 @@ figure {
   
   width:530px;
   height:175px;
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  -o-backface-visibility:hidden;
+  -moz-backface-visibility:hidden;
 }
 #prism .back   { 
   -webkit-transform: rotateX( 180deg ) translateZ( 5px ); 
@@ -256,11 +260,11 @@ figure {
   width:530px;
 }
 #prism .bottom { 
-  -webkit-transform: rotateX( -90deg ) translateZ( 145px ); 
-  -moz-transform: rotateX( -90deg ) translateZ( 145px ); 
-  -o-transform: rotateX( -90deg ) translateZ( 145px ); 
-  -ms-transform: rotateX( -90deg ) translateZ( 145px ); 
-  transform: rotateX( -90deg ) translateZ( 145px ); 
+  -webkit-transform: rotateX( -90deg ) translateZ( 170px ); 
+  -moz-transform: rotateX( -90deg ) translateZ( 170px ); 
+  -o-transform: rotateX( -90deg ) translateZ( 170px ); 
+  -ms-transform: rotateX( -90deg ) translateZ( 170px ); 
+  transform: rotateX( -90deg ) translateZ( 170px ); 
   height:10px;
   width:530px;
 }
@@ -279,13 +283,13 @@ figure {
 }
 
 .btn-group .option {
-  color:#33CCFF !important;
+  color:#FF8000 !important;
   font-size:1em;
   vertical-align: baseline;
 }
 
 .btn-group .option span {
-  border-bottom:1px dashed #33CCFF;
+  border-bottom:1px dashed #FF8000;
 }
 
 #top-bar h2 {
@@ -301,7 +305,6 @@ figure {
   color: white;
   text-align: center;
   border:5px solid rgba(255,255,255,1);
-  background-color:#FF8000;
   margin:0;
   box-sizing:border-box;
 }
