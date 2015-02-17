@@ -5,6 +5,7 @@ app.filter('LessThanPrice', function(FilterData){
   var cost = 0;
   return function(item) {
     var filtered = [];
+    console.log('filter');
     if(_.isArray(item)){
       _.each(item, function(el){
         if(el.ticket_classes[0])

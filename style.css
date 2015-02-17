@@ -18,6 +18,10 @@ h2 {
   margin:0;
 }
 
+#header {
+  font-size:5em;
+}
+
 .filter span {
   font-weight: 400;
   font-size: 15px;
