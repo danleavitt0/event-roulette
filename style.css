@@ -13,6 +13,11 @@ a {
   text-decoration:none;
 }
 
+h2 {
+  font-size:2em;
+  margin:0;
+}
+
 .filter span {
   font-weight: 400;
   font-size: 15px;
@@ -60,7 +65,7 @@ a {
 }
 
 .md-tall{
-  background:url('https://d2fijpsef22722.cloudfront.net/photos/massive/847187872-san-francisco.jpg');
+  background:url('http://eventbrite-s3.s3.amazonaws.com/marketing/landingpages/sem/SEM_landing_pages_3.jpg');
   background-size:cover;
   background-position:50%;
   min-width:700px;
@@ -126,7 +131,7 @@ a {
 }
 
 .full-gradient {
-  background:rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.6);
   width:100%;
   height:100%;
   text-align:center;
@@ -275,7 +280,7 @@ figure {
 
 .btn-group .option {
   color:#33CCFF !important;
-  font-size:22px;
+  font-size:1em;
   vertical-align: baseline;
 }
 
@@ -284,7 +289,7 @@ figure {
 }
 
 #top-bar h2 {
-  font-size:22px;
+  font-size:2em;
 }
 
 #prism figure {

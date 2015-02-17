@@ -23,10 +23,9 @@
 
     <body ng-controller="SpinWheel">
     <md-container class="page-container" layout="column">
-      <md-toolbar id="top-view">
-        <div id="top-bar" class="md-toolbar-tools">
-          <!-- <div ng-click="toggleLeft()" class="box-shadow-menu"> </div> -->
-          <h2> Find your next 
+      <md-toolbar id="tall-image" class="md-tall">
+        <div class="full-gradient" layout="column" layout-align="center center">
+        <h2> Find your next 
           <span>
             <div class="btn-group" dropdown>
               <md-button ng-init="category = 'Food & Drink'" type="button" class="dropdown-toggle option" dropdown-toggle>
@@ -42,7 +41,10 @@
               </ul>
             </div>
           </span> 
-          experience in San Francisco 
+          experience
+          </h2>
+          <h2> 
+          in San Francisco 
           <span>
           <div class="btn-group" dropdown is-open="status.isopen">
             <md-button ng-init="filterData.date = 'This Week'" type="button" class="dropdown-toggle option" dropdown-toggle>
@@ -56,11 +58,8 @@
                 <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
             </ul>
           </div>
-          </span> </h2>
-        </div>
-      </md-toolbar>
-      <md-toolbar id="tall-image" class="md-tall">
-        <div class="full-gradient" layout="column" layout-align="center center">
+          </span> 
+          </h2>
           <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
         </div>
       </md-toolbar>
