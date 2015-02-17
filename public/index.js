@@ -1,3 +1,27 @@
+var categories = {
+  'Food & Drink': {
+    categoryCode: 110,
+    url: 'http://cdn.thebolditalic.com/paperclip/articles/6750/rect_images/original/lahero2.jpg?1422912300'
+  },
+  'Music': {
+    categoryCode: 103, 
+    url: 'http://eventbrite-s3.s3.amazonaws.com/marketing/landingpages/sem/SEM_landing_pages_3.jpg'
+  },
+  'Film & Media': {
+    categoryCode: 104,
+    url: 'https://wakeforestmuseum.files.wordpress.com/2013/08/movie-theater.jpg'
+  },
+  'Arts & Entertainment': {
+    categoryCode: 105,
+    url: 'http://theyownthenight.com/wp-content/uploads/2013/10/H4A0301.jpg'
+  },
+  'Sports & Fitness': {
+    categoryCode: 108,
+    url:'http://calmbiz.com/wp-content/uploads/2012/12/Cailen-Yoga-bw-02.jpg'
+  }
+};
+
+
 var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap']);
 
 app.filter('LessThanPrice', function(FilterData){
@@ -107,7 +131,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       'cache':true,
       'params':{
         'venue.city':'San Francisco',
-        'start_date.range_start':today,
+        'start_date.keyword':'today',
         'start_date.keyword':date,
         'categories':categories,
         'popular':isPopular,
@@ -126,6 +150,20 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.orderingDate = function(item) {
     return item.start.utc;
   };
+
+  $scope.getCategory = function(cat) {
+    var image = angular.element(document.getElementsByClassName('full-gradient'));
+    console.log(image);
+    $scope.category = cat;
+    $scope.filterData.categoryCode = categories[cat].categoryCode;
+    $animate.addClass(image, 'fade-out')
+    .then(function(){
+      $scope.$apply(function(){
+        $scope.newImage = categories[cat].url;
+        $animate.removeClass(image, 'fade-out');
+      });
+    });
+  }
 
   $scope.wheelSpin = function(e) {
     var element = document.getElementById('prism');

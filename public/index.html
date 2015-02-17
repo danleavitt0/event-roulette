@@ -24,7 +24,7 @@
 
     <body ng-controller="SpinWheel">
     <md-container class="page-container" layout="column">
-      <md-toolbar id="tall-image" class="md-tall">
+      <md-toolbar ng-init="newImage = 'http://eventbrite-s3.s3.amazonaws.com/marketing/landingpages/sem/SEM_landing_pages_3.jpg'" id="tall-image" class="md-tall" ng-style="{'background-image':'url(' + newImage + ')'}">
         <div class="full-gradient" layout="column" layout-align="center center">
         <h2 id="header"> Ready to play event roulette?</h2>
           <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
@@ -36,11 +36,11 @@
                   {{category}}
                   </md-button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="category = 'Food & Drink'; filterData.categoryCode = 110">Food & Drink</a></li>
-                    <li><a ng-click="category = 'Music'; filterData.categoryCode = 103">Music</a></li>
-                    <li><a ng-click="category = 'Film & Media'; filterData.categoryCode = 104">Film & Media</a></li>
-                    <li><a ng-click="category = 'Arts & Entertainment'; filterData.categoryCode = 105">Arts & Entertainment</a></li>
-                    <li><a ng-click="category = 'Sports & Fitness'; filterData.categoryCode = 108">Sports & Fitness</a></li>
+                    <li><a ng-click="getCategory('Food & Drink')">Food & Drink</a></li>
+                    <li><a ng-click="getCategory('Music')">Music</a></li>
+                    <li><a ng-click="getCategory('Film & Media')">Film & Media</a></li>
+                    <li><a ng-click="getCategory('Arts & Entertainment')">Arts & Entertainment</a></li>
+                    <li><a ng-click="getCategory('Sports & Fitness')">Sports & Fitness</a></li>
                   </ul>
                 </div>
               </span> 
@@ -77,57 +77,5 @@
         </div>
       </md-toolbar>
     </md-container> 
-    
-    <!-- <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-      <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Filter Options</h1>
-      </md-toolbar>
-      <md-content class="md-padding" ng-controller="LeftCtrl">
-        <div class="filter">
-          <h3> When: </h3>
-          <div class="btn-group" dropdown is-open="status.isopen">
-            <md-button type="button" class="dropdown-toggle" dropdown-toggle>
-              {{filterData.date}}
-              <span class="caret"></span>
-            </md-button>
-            <ul class="dropdown-menu" role="menu">
-              <li><a ng-click="filterData.date = 'Choose Date'">Any</a></li>
-              <li><a ng-click="filterData.date = 'Today'">Today</a></li>
-              <li><a ng-click="filterData.date = 'This Week'">This Week</a></li>
-              <li><a ng-click="filterData.date = 'This Weekend'">This Weekend</a></li>
-              <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="filter">
-          <h3> Event Category: </h3>
-          <md-checkbox ng-model="categories[110]" aria-label="Food & Drink">
-            Food & Drink
-          </md-checkbox>
-          <md-checkbox ng-model="categories[103]" aria-label="Music">
-            Music
-          </md-checkbox>
-          <md-checkbox ng-model="categories[104]" aria-label="Film & Media">
-            Film & Media
-          </md-checkbox>
-          <md-checkbox ng-model="categories[105]" aria-label="Arts">
-            Arts & Entertainment
-          </md-checkbox>
-          <md-checkbox ng-model="categories[109]" aria-label="Travel & Outdoor">
-            Travel & Outdoor
-          </md-checkbox>
-          <md-checkbox ng-model="categories[108]" aria-label="Sports & Fitness">
-            Sports & Fitness
-          </md-checkbox>
-        </div>
-        <div class="filter">
-          <h3> Maximum Price: <span>{{filterData.stringPrice()}}</span></h3>
-          <md-slider min="0" max="100" ng-model="filterData.maxPrice"></md-slider>
-        </div>
-        <div class="buttons" layout="row" layout-fill layout-align="space-around center">
-          <md-button flex ng-click="wheelSpin()" id="search" class="md-raised"> Spin </md-button>
-        </div>
-      </md-content>
-    </md-sidenav> -->
   </body>
 </html>
