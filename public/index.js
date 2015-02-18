@@ -1,23 +1,23 @@
 var categories = {
   'Food & Drink': {
     categoryCode: 110,
-    url: 'http://cdn.thebolditalic.com/paperclip/articles/6750/rect_images/original/lahero2.jpg?1422912300'
+    url: '/public/images/food.jpg'
   },
   'Music': {
     categoryCode: 103, 
-    url: 'http://eventbrite-s3.s3.amazonaws.com/marketing/landingpages/sem/SEM_landing_pages_3.jpg'
+    url: '/public/images/music.jpg'
   },
   'Film & Media': {
     categoryCode: 104,
-    url: 'https://wakeforestmuseum.files.wordpress.com/2013/08/movie-theater.jpg'
+    url: '/public/images/film.jpg'
   },
   'Arts & Entertainment': {
     categoryCode: 105,
-    url: 'http://theyownthenight.com/wp-content/uploads/2013/10/H4A0301.jpg'
+    url: '/public/images/arts.jpg'
   },
   'Sports & Fitness': {
     categoryCode: 108,
-    url:'http://calmbiz.com/wp-content/uploads/2012/12/Cailen-Yoga-bw-02.jpg'
+    url:'/public/images/sports.jpg'
   }
 };
 

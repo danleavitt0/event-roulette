@@ -24,7 +24,7 @@
 
     <body ng-controller="SpinWheel">
     <md-container class="page-container" layout="column">
-      <md-toolbar ng-init="newImage = 'http://eventbrite-s3.s3.amazonaws.com/marketing/landingpages/sem/SEM_landing_pages_3.jpg'" id="tall-image" class="md-tall" ng-style="{'background-image':'url(' + newImage + ')'}">
+      <md-toolbar ng-init="newImage = '/public/images/arts.jpg'" id="tall-image" class="md-tall" ng-style="{'background-image':'url(' + newImage + ')'}">
         <div class="full-gradient" layout="column" layout-align="center center">
         <h2 id="header"> Ready to play event roulette?</h2>
           <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
