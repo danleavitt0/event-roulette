@@ -22,7 +22,7 @@ var categories = {
 };
 
 
-var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap']);
+var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap','ngProgress']);
 
 app.filter('LessThanPrice', function(FilterData){
   var filterData = FilterData;
@@ -58,6 +58,32 @@ app.directive('spinButton', function(){
 app.directive('eventCard', function(){
   return {
     templateUrl: 'event-card.html'
+  }
+});
+
+app.directive('imageLoad', function($http, ngProgress) {  
+  ngProgress.start();
+  return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+      console.log(ngProgress);
+      $http({
+        url: scope.newImage,
+        method: 'GET',
+        headers: {
+          'Accept': 'image/webp,*/*;q=0.8'
+        }
+      })
+      .then(function(){
+        console.log(ngProgress);
+        setTimeout(function(){
+          scope.$apply(function(){
+            ngProgress.complete();
+            scope.loaded = true;  
+          })
+        },500)
+      });
+    }
   }
 });
 
