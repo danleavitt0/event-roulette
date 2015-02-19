@@ -66,7 +66,6 @@ app.directive('imageLoad', function($http, ngProgress) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
-      console.log(ngProgress);
       $http({
         url: scope.newImage,
         method: 'GET',
@@ -75,7 +74,6 @@ app.directive('imageLoad', function($http, ngProgress) {
         }
       })
       .then(function(){
-        console.log(ngProgress);
         setTimeout(function(){
           scope.$apply(function(){
             ngProgress.complete();
@@ -179,7 +177,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
 
   $scope.getCategory = function(cat) {
     var image = angular.element(document.getElementsByClassName('full-gradient'));
-    console.log(image);
     $scope.category = cat;
     $scope.filterData.categoryCode = categories[cat].categoryCode;
     $animate.addClass(image, 'fade-out')
