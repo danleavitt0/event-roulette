@@ -62,6 +62,7 @@ app.directive('eventCard', function(){
 });
 
 app.directive('imageLoad', function($http, ngProgress) {  
+  ngProgress.color('#FF8000');
   ngProgress.start();
   return {
     restrict: 'A',
