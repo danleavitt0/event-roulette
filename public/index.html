@@ -14,6 +14,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
     <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="/bower_components/ngprogress/build/ngProgress.min.js"></script>
     <link rel="stylesheet" href="/bower_components/ngprogress/ngProgress.css" />
@@ -24,23 +25,40 @@
     <script src="index.js"></script>
   </head>
 
-    <body ng-controller="SpinWheel">
+    <body ng-controller="SpinWheel" ng-init="initCity()">
     <md-container class="page-container" layout="column">
       <md-toolbar ng-show="loaded" image-load ng-init="newImage = '/public/images/arts.jpg'; loaded = false;" id="tall-image" class="md-tall" ng-style="{'background-image':'url(' + newImage + ')'}">
         <div class="full-gradient" layout="column" layout-align="center center">
-        <h2 id="header"> Ready to play event roulette?</h2>
+        <h2 id="header"> Ready to play Event Roulette?</h2>
           <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
           <div style="margin:20px">
             <h3>
               <span>
                 <div class="btn-group" dropdown>
-                  <md-button ng-init="category = 'Any Category'" type="button" class="dropdown-toggle option" dropdown-toggle>
-                  {{category}}
+                  <md-button ng-init="filterData.city = 'Choose City'" type="button" class="dropdown-toggle option" dropdown-toggle>
+                  {{filterData.city}}
+                  <span class="arrow-down"></span>
                   </md-button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="getCategory('Food & Drink')">Food & Drink</a></li>
+                    <li><a ng-click="filterData.city = 'SF'">San Francisco</a></li>
+                    <li><a ng-click="filterData.city = 'LA'">Los Angeles</a></li>
+                    <li><a ng-click="filterData.city = 'CHI'">Chicago</a></li>
+                    <li><a ng-click="filterData.city = 'NYC'">New York City</a></li>
+                    <li><a ng-click="filterData.city = 'ATL'">Atlanta</a></li>
+                    <li><a ng-click="filterData.city = 'BOS'">Boston</a></li>
+                  </ul>
+                </div>
+              </span> 
+              <span>
+                <div class="btn-group" dropdown>
+                  <md-button ng-init="category = 'Any Category'" type="button" class="dropdown-toggle option" dropdown-toggle>
+                  {{category}}
+                  <span class="arrow-down"></span>
+                  </md-button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a ng-click="getCategory('Any Category')">Any Category</a></li>
                     <li><a ng-click="getCategory('Music')">Music</a></li>
-                    <li><a ng-click="getCategory('Film & Media')">Film & Media</a></li>
+                    <li><a ng-click="getCategory('Food & Drink')">Food & Drink</a></li>
                     <li><a ng-click="getCategory('Arts & Entertainment')">Arts & Entertainment</a></li>
                     <li><a ng-click="getCategory('Sports & Fitness')">Sports & Fitness</a></li>
                   </ul>
@@ -50,6 +68,7 @@
                 <div class="btn-group" dropdown>
                   <md-button ng-init="filterData.date = 'This Week'" type="button" class="dropdown-toggle option" dropdown-toggle>
                     {{filterData.date}}
+                    <span class="arrow-down"></span>
                   </md-button>
                   <ul class="dropdown-menu" role="menu">
                       <li><a ng-click="filterData.date = 'Any Time'">Any Time</a></li>
@@ -64,13 +83,15 @@
                 <div class="btn-group" dropdown>
                   <md-button ng-init="price = 'Any Price'" type="button" class="dropdown-toggle option" dropdown-toggle>
                     {{price}}
+                  <span class="arrow-down"></span>
                   </md-button>
                   <ul class="dropdown-menu" role="menu">
                       <li><a ng-click="filterData.priceValue = 0; price = 'free'">free</a></li>
-                      <li><a ng-click="filterData.priceValue = 2500; price = '$'">$</a></li>
-                      <li><a ng-click="filterData.priceValue = 5000; price = '$$'">$$</a></li>
-                      <li><a ng-click="filterData.priceValue = 7500; price = '$$$'">$$$</a></li>
-                      <li><a ng-click="filterData.priceValue = 10000; price = '$$$$'">$$$$</a></li>
+                      <li><a ng-click="filterData.priceValue = 1000; price = 'Under $10'">Under $10</a></li>
+                      <li><a ng-click="filterData.priceValue = 2500; price = 'Under $25'">Under $25</a></li>
+                      <li><a ng-click="filterData.priceValue = 5000; price = 'Under $50'">Under $50</a></li>
+                      <li><a ng-click="filterData.priceValue = 10000; price = 'Under $100'">Under $100</a></li>
+                      <li><a ng-click="filterData.priceValue = 10001; price = 'Any Price'">Any Price</a></li>
                   </ul>
                 </div>
               </span>

@@ -1,4 +1,8 @@
 var categories = {
+  'Any Category': {
+    categoryCode: [103,105,108,110],
+    url: '/public/images/arts.jpg'
+  },
   'Food & Drink': {
     categoryCode: 110,
     url: '/public/images/food.jpg'
@@ -6,10 +10,6 @@ var categories = {
   'Music': {
     categoryCode: 103, 
     url: '/public/images/music.jpg'
-  },
-  'Film & Media': {
-    categoryCode: 104,
-    url: '/public/images/film.jpg'
   },
   'Arts & Entertainment': {
     categoryCode: 105,
@@ -20,7 +20,6 @@ var categories = {
     url:'/public/images/sports.jpg'
   }
 };
-
 
 var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap','ngProgress']);
 
@@ -33,7 +32,7 @@ app.filter('LessThanPrice', function(FilterData){
       _.each(item, function(el){
         if(el.ticket_classes[0])
           cost = el.ticket_classes[0].cost ? el.ticket_classes[0].cost.value : 0;
-        if (cost <= filterData.priceValue || filterData.priceValue >= 10000)
+        if (cost <= filterData.priceValue || filterData.priceValue >= 10001)
           filtered.push(el);
       });
     }
@@ -45,7 +44,7 @@ app.factory('FilterData', function(){
   return {
     maxPrice:0,
     priceValue:0,
-    categoryCode:[103,104,105,108,109,110]
+    categoryCode:[103,105,108,110]
   };
 });
 
@@ -122,6 +121,62 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
         return 'this_week';
     }
   }
+
+  function addTracking(ev) {
+    return ev.split('=')[0] + '=eventroulette';
+  }
+
+  $scope.initCity = function() {
+    var geocoder;
+    var loc;
+    geocoder = new google.maps.Geocoder();
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+    } 
+    //Get the latitude and the longitude;
+
+    function successFunction(position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      codeLatLng(lat, lng)
+    }
+
+    function errorFunction(){
+      console.log("Geocoder failed");
+    }
+
+    function codeLatLng(lat, lng) {
+
+      var latlng = new google.maps.LatLng(lat, lng);
+      geocoder.geocode({'latLng': latlng}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[1]) {
+            for (var i=0; i<results[0].address_components.length; i++) {
+              for (var b=0;b<results[0].address_components[i].types.length;b++) {
+                if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+                  city= results[0].address_components[i];
+                  break;
+                }
+              }
+          }
+          //city data
+
+          $scope.$apply(function(){
+            FilterData.city = results[0].address_components[3].long_name;
+          })
+          
+
+
+          } else {
+            console.log("No results found");
+          }
+        } else {
+          console.log("Geocoder failed due to: " + status);
+        }
+      });
+    }
+  }
   
   $scope.spin = function(cb){
     cb = cb || function() {};
@@ -138,6 +193,8 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       });
       var idx = Math.floor(Math.random() * events.length);
       $scope.events[0] = events[idx];
+      $scope.events[0].url = addTracking($scope.events[0].url);
+      console.log(events[0].url);
       $scope.usedEvents.push(events[idx]);
       cb();
     });
@@ -152,7 +209,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     isPopular = isPopular || false;
     $http({
       'method':'GET', 
-      'url':'https://www.eventbriteapi.com/v3/events/search/?token=QVLW2KE734XBBN6Q2DOI',
+      'url':'/getEvents',
       'cache':true,
       'params':{
         'venue.city':'San Francisco',
@@ -164,10 +221,7 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       }
     })
     .success(function(data,status,headers,config) {
-      $scope.showLoading = false;
-      events = data.events;
-      $scope.pagination = data.pagination;
-      cb(events);
+      cb(data.events);
     });
     return events;
   };
@@ -175,6 +229,10 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
   $scope.orderingDate = function(item) {
     return item.start.utc;
   };
+
+  function initCity(city){
+    FilterData.city = city;
+  }
 
   $scope.getCategory = function(cat) {
     var image = angular.element(document.getElementsByClassName('full-gradient'));
