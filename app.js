@@ -1,9 +1,10 @@
     var express  = require('express');
-    var app      = express();                               // create our app w/ express
+    var app = express();                               // create our app w/ express
     var morgan = require('morgan');             // log requests to the console (express4)
     var bodyParser = require('body-parser');    // pull information from HTML POST (express4)
     var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
     var request = require('request');
+    var fs = require('fs');
 
     // configuration =================
 
@@ -17,19 +18,21 @@
 
     app.get('/getEvents', function(req,res) {
       var query = req.query;
-      var url = "https://www.eventbriteapi.com/v3/events/search"
+      var url = "https://www.eventbriteapi.com/v3/events/search";
       var params = {
         'token': 'QVLW2KE734XBBN6Q2DOI',
-        'venue.city':'San Francisco',
-        'start_date.keyword':'today',
+        'venue.city':query['venue.city'],
+        'start_date.keyword':query['start_date.keyword'],
         'categories':query.categories,
         'popular':query.isPopular,
         'page':query.page
       }
 
       request({url:url, qs:params}, function(err,body,response){
+        if(err)
+          res.status(500).send(err)
         res.send(response);
-      })
+      });
 
     });
 

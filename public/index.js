@@ -21,6 +21,13 @@ var categories = {
   }
 };
 
+var date = {
+  'Today':'today',
+  'This Week':'this_week',
+  'This Weekend':'this_weekend',
+  'This Month':'this_month'
+};
+
 var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap','ngProgress']);
 
 app.filter('LessThanPrice', function(FilterData){
@@ -40,13 +47,65 @@ app.filter('LessThanPrice', function(FilterData){
   };
 });
 
+app.filter('TicketInfo', function(){
+
+})
+
 app.factory('FilterData', function(){
   return {
     maxPrice:0,
     priceValue:0,
-    categoryCode:[103,105,108,110]
+    categoryCode:[103,105,108,110],
+    city:undefined,
+    date:undefined
   };
 });
+
+app.factory('Events', function($http, $q, FilterData){
+
+  var city = FilterData.city === 'Choose City' ? 'San Francisco' : FilterData.city;
+
+  var getById = function(id) {
+    var canceller = $q.defer();
+    var categories = FilterData.categoryCode.toString();
+    var getDate = date[FilterData.date];
+
+    var cancel = function(reason) {
+      canceller.resolve(reason);
+    }
+
+    var promise = $http({
+      'method':'GET', 
+      'url':'/getEvents',
+      'cache':true,
+      'timeout':canceller.promise,
+      'params':{
+        'venue.city':FilterData.city,
+        'start_date.keyword':getDate,
+        'categories':categories,
+        'page':0
+      }
+    })
+    .success(function(response){
+      return response;
+    })
+
+    return {
+      promise:promise,
+      cancel:cancel
+    };
+  }
+  return {getById: getById};
+})
+
+app.directive('spin', function(){
+  return {
+    restrict: 'A',
+    link: function(scope,element,attrs){
+      scope.prism = element;
+    }
+  }
+})
 
 app.directive('spinButton', function(){
   return {
@@ -85,42 +144,20 @@ app.directive('imageLoad', function($http, ngProgress) {
   }
 });
 
-app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location, $animate, FilterData){
+app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $mdToast, $q, $animate, FilterData, Events){
   $scope.filterData = FilterData;
   $scope.spinning = false;
   $scope.date = "Choose Date";
   $scope.usedEvents = [];
-  
-  var today = new Date();
-  var nextWeek = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
-  
-  nextWeek = toDateTime(nextWeek);
-  today = toDateTime(today);
-    
-  function toDateTime (d) {
-    d = d.toISOString();
-    var r = d.slice(19,23);
-    return d.replace(r,'');
-  }
+  $scope.holder = [];
+  $scope.requests = [];
+  $scope.id = 1;
 
-  function getDate() {
-    switch(FilterData.date) {
-      case 'Today':
-        return 'today';
-        break;
-      case 'This Week':
-        return 'this_week';
-        break;
-      case 'This Weekend':
-        return 'this_weekend';
-        break;
-      case 'This Month':
-        return 'this_month';
-        break;
-      default:
-        return 'this_week';
-    }
-  }
+  _.each(_.keys($scope.filterData), function(key){
+    $scope.$watch('filterData.'+key, function(){
+      $scope.spin(false);
+    })
+  });
 
   function addTracking(ev) {
     return ev.split('=')[0] + '=eventroulette';
@@ -148,6 +185,15 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
 
     function codeLatLng(lat, lng) {
 
+      var validCities = [
+        'San Francisco',
+        'Atlanta',
+        'Boston',
+        'Los Angeles',
+        'Chicago',
+        'New York'
+      ]
+
       var latlng = new google.maps.LatLng(lat, lng);
       geocoder.geocode({'latLng': latlng}, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
@@ -163,11 +209,10 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
           //city data
 
           $scope.$apply(function(){
-            FilterData.city = results[0].address_components[3].long_name;
+            var city = results[0].address_components[3].long_name;
+            FilterData.city = _.contains(validCities, city) ? city : 'Choose City';
           })
           
-
-
           } else {
             console.log("No results found");
           }
@@ -177,54 +222,55 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
       });
     }
   }
+
+  var clearRequest = function(request){
+    if(_.isArray(request)) {
+      _.each(request, function(el){
+        clearRequest(el);
+      })
+    }
+    else
+      $scope.requests.splice($scope.requests.indexOf(request), 1);
+  };
   
   $scope.spin = function(cb){
-    cb = cb || function() {};
-    $scope.getData(false, 1, function(events){
-      $scope.showLoading = false;
-      $scope.events = [];
-      events = $filter('LessThanPrice')(events);
-      events = _.reject(events, function(obj,idx){
-        for(var i = 0; i < $scope.usedEvents.length; i++) {
-          if ( _.isEqual(obj, $scope.usedEvents[i])) {
-            return obj;
-          }
-        }
-      });
-      var idx = Math.floor(Math.random() * events.length);
-      $scope.events[0] = events[idx];
-      $scope.events[0].url = addTracking($scope.events[0].url);
-      console.log(events[0].url);
-      $scope.usedEvents.push(events[idx]);
-      cb();
-    });
-  }
-  
-  $scope.getData = function(isPopular, page, cb){
-    var categories = $scope.filterData.categoryCode.toString();
-    var events;
-    var date = getDate();
-    cb = cb || function(){};
-    page = page || 1;
-    isPopular = isPopular || false;
-    $http({
-      'method':'GET', 
-      'url':'/getEvents',
-      'cache':true,
-      'params':{
-        'venue.city':'San Francisco',
-        'start_date.keyword':'today',
-        'start_date.keyword':date,
-        'categories':categories,
-        'popular':isPopular,
-        'page':page
+    if($scope.filterData.city != 'Choose City'){
+      if($scope.requests.length > 0) {
+        $scope.requests[0].cancel('another started');
+        clearRequest($scope.requests);
       }
-    })
-    .success(function(data,status,headers,config) {
-      cb(data.events);
+      var request = Events.getById($scope.id++);
+      $scope.requests.push(request);
+      request.promise.then(function(response){
+        $scope.events = response.data.events;
+        clearRequest(request);
+        $scope.$emit('found');
+      });
+    }
+  }
+
+  function findEvent(events) {
+    $scope.visibleEvent = undefined;
+    events = $filter('LessThanPrice')(events);
+    events = _.reject(events, function(obj,idx){
+      var list = []
+      for(var i = 0; i < $scope.usedEvents.length; i++) {
+        if (obj.id === $scope.usedEvents[i].id)
+          list.push(obj)
+      }
+      if(list.length > 0)
+        return obj;
     });
-    return events;
-  };
+    if(_.isEmpty(events)) {
+      toast('No more events. Try changing the filter options.');
+      return;
+    }
+    $scope.events = events;
+    var idx = Math.floor(Math.random() * events.length);
+    $scope.visibleEvent = _.clone(events[idx]);
+    $scope.visibleEvent.url = addTracking($scope.visibleEvent.url);
+    $scope.usedEvents.push(events[idx]);
+  }
     
   $scope.orderingDate = function(item) {
     return item.start.utc;
@@ -234,37 +280,65 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $location,
     FilterData.city = city;
   }
 
+  function animateAndRemove(element, name, cb){
+    cb = cb || function(){};
+    $animate.addClass(element, name)
+    .then(function(){
+      $scope.$apply(function(){
+        $animate.removeClass(element, name);
+      });
+      cb();
+    });
+  }
+
   $scope.getCategory = function(cat) {
     var image = angular.element(document.getElementsByClassName('full-gradient'));
     $scope.category = cat;
     $scope.filterData.categoryCode = categories[cat].categoryCode;
-    $animate.addClass(image, 'fade-out')
-    .then(function(){
+    animateAndRemove(image, 'fade-out', function(){
       $scope.$apply(function(){
         $scope.newImage = categories[cat].url;
-        $animate.removeClass(image, 'fade-out');
-      });
+      })
     });
   }
 
-  $scope.wheelSpin = function(e) {
-    var element = document.getElementById('prism');
-    $scope.spinning = true;
-    $scope.isDisabled = true;
-    $animate.addClass(element, 'animate')
-    .then(function(){
-      $scope.$apply(function(){
-        $scope.found = true;
-        if($scope.events) {
-          $scope.visibleEvent = $scope.events[0];
-          $scope.img = $scope.events[0].logo_url;
-        }
-      });
-      angular.element(element).removeClass('animate');
-    });
-    $scope.spin(function(){
-      $scope.spinning = false;
-    })
+  function eventFound(){
+    $scope.watchForFound();
+    findEvent($scope.events);
+    $scope.initSpin = 'spinningOut';
   }
-  
+
+  function toast(message){
+    $mdToast.show(
+      $mdToast.simple()
+        .content(message)
+        .position('top right')
+        .action('OK')
+    );
+  }
+
+  $scope.wheelSpin = function(e) {
+    if($scope.filterData.city === 'Choose City'){
+      toast('Select a city first!')
+    }
+    else {
+      var element = document.getElementById('prism');
+      if(_.isEmpty($scope.requests)) {
+        animateAndRemove(element, 'animate', function(){
+          $scope.$apply(function(){
+            findEvent($scope.events);
+          })
+        })
+      }
+      else {
+        $scope.initSpin = 'init';
+        setTimeout(function(){
+          $scope.$apply(function(){
+            $scope.initSpin = 'spinning';
+            $scope.watchForFound = $scope.$on('found', eventFound);
+          });
+        },1500)
+      }
+    }
+  }
 });

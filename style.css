@@ -28,14 +28,76 @@ h2 {
 }
 
 .animate {
-  -webkit-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
-  -moz-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
-  -o-transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
-  transition:all cubic-bezier(.65,.02,.29,1) 6s !important;
-  -webkit-transform:rotateX(-900deg) !important;
-  -moz-transform:rotateX(-900deg) !important;
-  -o-transform:rotateX(-900deg) !important;
-  transform:rotateX(-900deg) !important;
+  -webkit-transition:all cubic-bezier(.65,.02,.29,1) 4s !important;
+  -moz-transition:all cubic-bezier(.65,.02,.29,1) 4s !important;
+  -o-transition:all cubic-bezier(.65,.02,.29,1) 4s !important;
+  transition:all cubic-bezier(.65,.02,.29,1) 4s !important;
+  -webkit-transform:rotateX(-540deg) !important;
+  -moz-transform:rotateX(-540deg) !important;
+  -o-transform:rotateX(-540deg) !important;
+  transform:rotateX(-540deg) !important;
+}
+
+#prism.init {
+  -webkit-transition:all cubic-bezier(.65,0,1,1) 1.5s !important;
+  -moz-transition:all cubic-bezier(.65,0,1,1) 1.5s !important;
+  -o-transition:all cubic-bezier(.65,0,1,1) 1.5s !important;
+  transition:all cubic-bezier(.65,0,1,1) 1.5s !important;
+  -webkit-transform:rotateX(-180deg) !important;
+  -moz-transform:rotateX(-180deg) !important;
+  -o-transform:rotateX(-180deg) !important;
+  transform:rotateX(-180deg) !important;
+}
+
+#prism.spinningOut {
+  animation: spinOut 1.5s 1 ease-out;
+  -webkit-animation: spinOut 1.5s 1 ease-out;
+  -moz-animation: spinOut 1.5s 1 ease-out;
+  -o-animation: spinOut 1.5s 1 ease-out;
+  -ms-animation: spinOut 1.5s 1 ease-out;
+}
+
+
+#prism.spinning {
+  animation: spin 1.5s infinite linear;
+  -webkit-animation: spin 1.5s infinite linear;
+  -moz-animation: spin 1.5s infinite linear;
+  -o-animation: spin 1.5s infinite linear;
+  -ms-animation: spin 1.5s infinite linear;
+}
+
+@keyframes spinOut {
+  0% {transform:rotateX(-180deg)}
+  100% {transform:rotateX(-360deg)}
+}
+
+@-webkit-keyframes spinOut {
+  0% {-webkit-transform:rotateX(-180deg)}
+  100% {-webkit-transform:rotateX(-360deg)}
+}
+
+@keyframes spin {
+  0% {transform:rotateX(-180deg)}
+  50% {transform:rotateX(-360deg)}
+  100% {transform:rotateX(-540deg)}
+}
+
+@-moz-keyframes spin {
+  0% {-moz-transform:rotateX(-180deg)}
+  50% {-moz-transform:rotateX(-360deg)}
+  100% {-moz-transform:rotateX(-540deg)}
+}
+
+@-o-keyframes spin {
+  0% {-o-transform:rotateX(-180deg)}
+  50% {-o-transform:rotateX(-360deg)}
+  100% {-o-transform:rotateX(-540deg)}
+}
+
+@-webkit-keyframes spin {
+  0% {-webkit-transform:rotateX(-180deg)}
+  50% {-webkit-transform:rotateX(-360deg)}
+  100% {-webkit-transform:rotateX(-540deg)}
 }
 
 .pointer {

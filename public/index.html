@@ -19,7 +19,7 @@
     <script src="/bower_components/ngprogress/build/ngProgress.min.js"></script>
     <link rel="stylesheet" href="/bower_components/ngprogress/ngProgress.css" />
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css" />
-    <!-- <link rel="stylesheet" href="/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
+<!--     <link rel="stylesheet" href="/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
     <link rel="stylesheet" href="/style.css" />
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <script src="index.js"></script>
@@ -30,9 +30,9 @@
       <md-toolbar ng-show="loaded" image-load ng-init="newImage = '/public/images/arts.jpg'; loaded = false;" id="tall-image" class="md-tall" ng-style="{'background-image':'url(' + newImage + ')'}">
         <div class="full-gradient" layout="column" layout-align="center center">
         <h2 id="header"> Ready to play Event Roulette?</h2>
-          <div spin-button ng-init="isDisabled = false" ng-class="{pointer: !isDisabled, default: isDisabled}" class="button-container" layout="column" layout-align="center" ng-click="isDisabled || wheelSpin($event)"></div>
+          <div spin-button ng-class="{pointer: !visibleEvent, default: visibleEvent}" class="button-container" layout="column" layout-align="center" ng-click="visibleEvent || wheelSpin(true)"></div>
           <div style="margin:20px">
-            <h3>
+            <h3 layout="column" layout-gt-lg="row">
               <span>
                 <div class="btn-group" dropdown>
                   <md-button ng-init="filterData.city = 'Choose City'" type="button" class="dropdown-toggle option" dropdown-toggle>
@@ -40,12 +40,12 @@
                   <span class="arrow-down"></span>
                   </md-button>
                   <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="filterData.city = 'SF'">San Francisco</a></li>
-                    <li><a ng-click="filterData.city = 'LA'">Los Angeles</a></li>
-                    <li><a ng-click="filterData.city = 'CHI'">Chicago</a></li>
-                    <li><a ng-click="filterData.city = 'NYC'">New York City</a></li>
-                    <li><a ng-click="filterData.city = 'ATL'">Atlanta</a></li>
-                    <li><a ng-click="filterData.city = 'BOS'">Boston</a></li>
+                    <li><a ng-click="filterData.city = 'San Francisco'">San Francisco</a></li>
+                    <li><a ng-click="filterData.city = 'Los Angeles'">Los Angeles</a></li>
+                    <li><a ng-click="filterData.city = 'Chicago'">Chicago</a></li>
+                    <li><a ng-click="filterData.city = 'New York'">New York</a></li>
+                    <li><a ng-click="filterData.city = 'Atlanta'">Atlanta</a></li>
+                    <li><a ng-click="filterData.city = 'Boston'">Boston</a></li>
                   </ul>
                 </div>
               </span> 

@@ -1,9 +1,9 @@
 <section class="spin-container">
-  <div id="prism">
+  <div spin id="prism" ng-class="[initSpin]">
     <figure class="front">
       <div class="full-height" layout="column" layout-align="center center">
-        <h1 ng-hide="found">Press Yes</h1>
-        <div event-card id="event-card" ng-if="found">
+        <h1 ng-hide="visibleEvent">Press Yes</h1>
+        <div event-card id="event-card" ng-if="visibleEvent">
         </div>
         <div ng-show="visibleEvent" class="event-buttons">
           <a style="display:inline-block;" target="_blank" ng-href="{{visibleEvent.url}}"> 
