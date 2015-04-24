@@ -269,7 +269,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $mdToast, 
 
   function findEvent(events) {
     $scope.visibleEvent = undefined;
-    console.log(events);
     events = $filter('LessThanPrice')(events);
     events = _.reject(events, function(obj,idx){
       var list = []
