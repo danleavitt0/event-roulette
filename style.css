@@ -18,6 +18,18 @@ h2 {
   margin:0;
 }
 
+#menus {
+  -webkit-margin-before: 0;
+  -ms-margin-before: 0;
+  -moz-margin-before: 0;
+  -o-margin-before: 0;
+  margin:0;
+}
+
+md-toolbar.md-default-theme{
+  color:#ffffff;
+}
+
 #header {
   font-size:3em;
 }
@@ -128,10 +140,14 @@ h2 {
   max-height:100px;
 }
 
+md-select {
+  color: #FF8000;
+  margin:0 10px;
+}
+
 .md-tall{
   background-size:cover;
   background-position:50%;
-  min-width:700px;
 }
 
 .full-gradient {
@@ -139,7 +155,9 @@ h2 {
   width:100%;
   height:100%;
   text-align:center;
+  padding:10px;
   transition:background-color 1s linear;
+  min-height:500px;
 }
 
 .fade-out {
@@ -148,7 +166,7 @@ h2 {
 
 .full-gradient h1 {
   text-shadow:1px 1px rgba(0,0,0,0.2);
-  font-size:80px;
+  font-size:6em;
   margin:0;
   text-transform: uppercase;
 }
@@ -206,16 +224,16 @@ h2 {
   height:100%;
 }
 
-.button-container {
-  margin-top:2.5em;
-}
-
 .event-buttons {
   position: relative;
 }
 
 .event-buttons button {
   border:3px solid white;
+}
+
+.button-container {
+  margin:50px;
 }
 
 button {
@@ -240,7 +258,7 @@ figure {
 .spin-container {
   box-sizing:border-box;
   -webkt-box-sizing:border-box;
-  width: 530px;
+  width: 500px;
   height: 175px;
   position: relative;
   -webkit-perspective: 1000px;
@@ -256,8 +274,8 @@ figure {
   -ms-transform: rotateY(   0deg ) translateZ( 5px ); 
   transform: rotateY( 0deg ) translateZ( 5px ); 
   
-  width:530px;
-  height:175px;
+  width:100%;
+  height:100%;
   backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
   -o-backface-visibility:hidden;
@@ -269,16 +287,16 @@ figure {
   -o-transform: rotateX( 180deg ) translateZ( 5px ); 
   -ms-transform: rotateX( 180deg ) translateZ( 5px ); 
   transform: rotateX( 180deg ) translateZ( 5px ); 
-  width:530px;
-  height:175px;
+  width:100%;
+  height:100%;
 }
 #prism .right  { 
-  -webkit-transform: rotateY(  90deg ) translateZ( 525px );
-  -moz-transform: rotateY(  90deg ) translateZ( 525px );
-  -o-transform: rotateY(  90deg ) translateZ( 525px );
-  -ms-transform: rotateY(  90deg ) translateZ( 525px );
-  transform: rotateY(  90deg ) translateZ( 525px ); 
-  height:175px;
+  -webkit-transform: rotateY(  90deg ) translateZ( 495px );
+  -moz-transform: rotateY(  90deg ) translateZ( 495px );
+  -o-transform: rotateY(  90deg ) translateZ( 495px );
+  -ms-transform: rotateY(  90deg ) translateZ( 495px );
+  transform: rotateY(  90deg ) translateZ( 495px ); 
+  height:100%;
   width:10px;
 }
 #prism .left   { 
@@ -287,7 +305,7 @@ figure {
   -o-transform: rotateY( -90deg ) translateZ( 5px );
   -ms-transform: rotateY( -90deg ) translateZ( 5px );
   transform: rotateY( -90deg ) translateZ( 5px ); 
-  height:175px;
+  height:100%;
   width:10px;
 }
 #prism .top    { 
@@ -297,7 +315,7 @@ figure {
   -ms-transform: rotateX(  90deg ) translateZ( 5px ); 
   transform: rotateX(  90deg ) translateZ( 5px ); 
   height:10px;
-  width:530px;
+  width:100%;
 }
 #prism .bottom { 
   -webkit-transform: rotateX( -90deg ) translateZ( 170px ); 
@@ -306,7 +324,7 @@ figure {
   -ms-transform: rotateX( -90deg ) translateZ( 170px ); 
   transform: rotateX( -90deg ) translateZ( 170px ); 
   height:10px;
-  width:530px;
+  width:100%;
 }
 
 .btn-group {
@@ -321,12 +339,6 @@ figure {
 .dropdown-menu>li>a {
   padding: 5px 20px;
   font-size:18px;
-}
-
-.btn-group .option {
-  color:#FF8000 !important;
-  font-size:1.2em;
-  vertical-align: baseline;
 }
 
 .btn-group .option span {
@@ -373,8 +385,9 @@ md-toolbar#top-view {
 
 #tall-image{
   height:100%;
-  max-height:100%;
+  width:100%;
   min-height:500px;
+  max-height:100%;
 }
 
 .arrow-down {
@@ -394,8 +407,39 @@ md-toolbar#top-view {
   margin: 0 5px;
 }
 
+md-select.md-default-theme:not([disabled]):focus .md-select-label {
+  border: none;
+}
+
 
 body:after{
     display:none;
     content: url('/public/images/music.jpg') url('/public/images/food.jpg') url('/public/images/film.jpg') url('/public/images/arts.jpg') url('/public/images/sports.jpg');
+}
+
+@media (max-width:500px) {
+  .full-gradient h1{
+    font-size:4em;
+  }
+  #header {
+    font-size:2em;
+  }
+  .spin-container {
+    width:300px;
+    height:150px;
+  }
+  #prism .bottom { 
+    -webkit-transform: rotateX( -90deg ) translateZ( 145px ); 
+    -moz-transform: rotateX( -90deg ) translateZ( 145px ); 
+    -o-transform: rotateX( -90deg ) translateZ( 145px ); 
+    -ms-transform: rotateX( -90deg ) translateZ( 145px ); 
+    transform: rotateX( -90deg ) translateZ( 145px ); 
+    height:10px;
+    width:100%;
+  }
+
+  .button-container {
+    margin:15px;
+  }
+
 }

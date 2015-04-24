@@ -3,22 +3,18 @@
 
   <head>
     <title> Event Roulette </title>
-    <script data-require="angular.js@*" data-semver="1.3.7" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.7/angular.js"></script>
+    <meta name="viewport" content="width=device-width">
     <script data-require="underscore.js@*" data-semver="1.6.0" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
     <script data-require="lodash.js@*" data-semver="2.4.1" src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-    <script src="//cdn.jsdelivr.net/satellizer/0.8.7/satellizer.min.js"></script>
-    <script src="//cdn.jsdelivr.net/hammerjs/2.0.4/hammer.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script> 
-    <script src="/bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
     <script src="/bower_components/ngprogress/build/ngProgress.min.js"></script>
     <link rel="stylesheet" href="/bower_components/ngprogress/ngProgress.css" />
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.6.1/angular-material.min.css" />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.css">
+
 <!--     <link rel="stylesheet" href="/material-design-iconic-font/css/material-design-iconic-font.min.css"> -->
     <link rel="stylesheet" href="/style.css" />
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
@@ -31,69 +27,46 @@
         <div class="full-gradient" layout="column" layout-align="center center">
         <h2 id="header"> Ready to play Event Roulette?</h2>
           <div spin-button ng-class="{pointer: !visibleEvent, default: visibleEvent}" class="button-container" layout="column" layout-align="center" ng-click="visibleEvent || wheelSpin(true)"></div>
-          <div style="margin:20px">
-            <h3 layout="column" layout-gt-lg="row">
+          <div>
+            <h3 id="menus" layout="column" layout-gt-sm="row">
               <span>
-                <div class="btn-group" dropdown>
-                  <md-button ng-init="filterData.city = 'Choose City'" type="button" class="dropdown-toggle option" dropdown-toggle>
-                  {{filterData.city}}
-                  <span class="arrow-down"></span>
-                  </md-button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="filterData.city = 'San Francisco'">San Francisco</a></li>
-                    <li><a ng-click="filterData.city = 'Los Angeles'">Los Angeles</a></li>
-                    <li><a ng-click="filterData.city = 'Chicago'">Chicago</a></li>
-                    <li><a ng-click="filterData.city = 'New York'">New York</a></li>
-                    <li><a ng-click="filterData.city = 'Atlanta'">Atlanta</a></li>
-                    <li><a ng-click="filterData.city = 'Boston'">Boston</a></li>
-                  </ul>
-                </div>
+                <md-select auto-blur ng-init="filterData.city = 'Choose City'" ng-model="filterData.city">
+                  <md-option ng-hide="true" ng-value="'Choose City'">Choose City</md-option>
+                  <md-option ng-value="'San Francisco'">San Francisco</md-option>
+                  <md-option ng-value="'Los Angeles'">Los Angeles</md-option>
+                  <md-option ng-value="'Chicago'">Chicago</md-option>
+                  <md-option ng-value="'New York'">New York</md-option>
+                  <md-option ng-value="'Atlanta'">Atlanta</md-option>
+                  <md-option ng-value="'Boston'">Boston</md-option>
+                </md-select>
               </span> 
               <span>
-                <div class="btn-group" dropdown>
-                  <md-button ng-init="category = 'Any Category'" type="button" class="dropdown-toggle option" dropdown-toggle>
-                  {{category}}
-                  <span class="arrow-down"></span>
-                  </md-button>
-                  <ul class="dropdown-menu" role="menu">
-                    <li><a ng-click="getCategory('Any Category')">Any Category</a></li>
-                    <li><a ng-click="getCategory('Music')">Music</a></li>
-                    <li><a ng-click="getCategory('Food & Drink')">Food & Drink</a></li>
-                    <li><a ng-click="getCategory('Arts & Entertainment')">Arts & Entertainment</a></li>
-                    <li><a ng-click="getCategory('Sports & Fitness')">Sports & Fitness</a></li>
-                  </ul>
-                </div>
-              </span> 
+                <md-select auto-blur ng-init="filterData.category = 'Any Category'" ng-model="filterData.category">
+                  <md-option ng-value="'Any Category'">Any Category</md-option>
+                  <md-option ng-value="'Music'">Music</md-option>
+                  <md-option ng-value="'Food & Drink'">Food & Drink</md-option>
+                  <md-option ng-value="'Arts & Entertainment'">Arts & Entertainment</md-option>
+                  <md-option ng-value="'Sports & Fitness'">Sports & Fitness</md-option>
+                </md-select>
+              </span>
               <span>
-                <div class="btn-group" dropdown>
-                  <md-button ng-init="filterData.date = 'This Week'" type="button" class="dropdown-toggle option" dropdown-toggle>
-                    {{filterData.date}}
-                    <span class="arrow-down"></span>
-                  </md-button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li><a ng-click="filterData.date = 'Any Time'">Any Time</a></li>
-                      <li><a ng-click="filterData.date = 'Today'">Today</a></li>
-                      <li><a ng-click="filterData.date = 'This Week'">This Week</a></li>
-                      <li><a ng-click="filterData.date = 'This Weekend'">This Weekend</a></li>
-                      <li><a ng-click="filterData.date = 'This Month'">This Month</a></li>
-                  </ul>
-                </div>
-              </span> 
-              <span> 
-                <div class="btn-group" dropdown>
-                  <md-button ng-init="price = 'Any Price'" type="button" class="dropdown-toggle option" dropdown-toggle>
-                    {{price}}
-                  <span class="arrow-down"></span>
-                  </md-button>
-                  <ul class="dropdown-menu" role="menu">
-                      <li><a ng-click="filterData.priceValue = 0; price = 'free'">free</a></li>
-                      <li><a ng-click="filterData.priceValue = 1000; price = 'Under $10'">Under $10</a></li>
-                      <li><a ng-click="filterData.priceValue = 2500; price = 'Under $25'">Under $25</a></li>
-                      <li><a ng-click="filterData.priceValue = 5000; price = 'Under $50'">Under $50</a></li>
-                      <li><a ng-click="filterData.priceValue = 10000; price = 'Under $100'">Under $100</a></li>
-                      <li><a ng-click="filterData.priceValue = 10001; price = 'Any Price'">Any Price</a></li>
-                  </ul>
-                </div>
+                <md-select update-category auto-blur ng-init="filterData.date = 'This Week'" ng-model="filterData.date">
+                  <md-option ng-value="'Any Time'">Any Time</md-option>
+                  <md-option ng-value="'Today'">Today</md-option>
+                  <md-option ng-value="'This Week'">This Week</md-option>
+                  <md-option ng-value="'This Weekend'">This Weekend</md-option>
+                  <md-option ng-value="'This Month'">This Month</md-option>
+                </md-select>
+              </span>
+              <span>
+                <md-select auto-blur ng-init="price = 'Free'" ng-model="price">
+                  <md-option ng-click="filterData.priceValue = 0" ng-value="'Free'">Free</md-option>
+                  <md-option ng-click="filterData.priceValue = 1000" ng-value="'Under $10'">Under $10</md-option>
+                  <md-option ng-click="filterData.priceValue = 2500" ng-value="'Under $25'">Under $25</md-option>
+                  <md-option ng-click="filterData.priceValue = 5000" ng-value="'Under $50'">Under $50</md-option>
+                  <md-option ng-click="filterData.priceValue = 10000" ng-value="'Under $100'">Under $100</md-option>
+                  <md-option ng-click="filterData.priceValue = 10001" ng-value="'Any Price'">Any Price</md-option>
+                </md-select>
               </span>
             </h3>
           </div>

@@ -28,7 +28,7 @@ var date = {
   'This Month':'this_month'
 };
 
-var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ui.bootstrap','ngProgress']);
+var app = angular.module('EventbriteWheel', ['ngMaterial','ngAnimate','ngProgress']);
 
 app.filter('LessThanPrice', function(FilterData){
   var filterData = FilterData;
@@ -47,18 +47,20 @@ app.filter('LessThanPrice', function(FilterData){
   };
 });
 
-app.filter('TicketInfo', function(){
-
-})
-
 app.factory('FilterData', function(){
   return {
     maxPrice:0,
     priceValue:0,
     categoryCode:[103,105,108,110],
-    city:undefined,
+    city:'Choose City',
     date:undefined
   };
+});
+
+app.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('orange')
+    .accentPalette('blue');
 });
 
 app.factory('Events', function($http, $q, FilterData){
@@ -118,6 +120,22 @@ app.directive('eventCard', function(){
     templateUrl: 'event-card.html'
   }
 });
+
+app.directive('autoBlur', function(){
+  return function(scope, element, attributes){
+    scope.$watch(function(){
+      element[0].blur();
+    })
+  }
+});
+
+app.directive('updateCategory', function(){
+  return function(scope,element,attributes){
+    scope.$watch('filterData.category', function(){
+      scope.getCategory(scope.filterData.category);
+    })
+  }
+})
 
 app.directive('imageLoad', function($http, ngProgress) {  
   ngProgress.color('#FF8000');
@@ -293,7 +311,6 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $mdToast, 
 
   $scope.getCategory = function(cat) {
     var image = angular.element(document.getElementsByClassName('full-gradient'));
-    $scope.category = cat;
     $scope.filterData.categoryCode = categories[cat].categoryCode;
     animateAndRemove(image, 'fade-out', function(){
       $scope.$apply(function(){
