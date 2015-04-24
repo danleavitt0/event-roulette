@@ -9,7 +9,7 @@ var categories = {
   },
   'Music': {
     categoryCode: 103, 
-    url: '/public/images/music.jpg'
+    url: '/public/images/mf2.jpg'
   },
   'Arts & Entertainment': {
     categoryCode: 105,
