@@ -372,6 +372,7 @@ md-toolbar#top-view {
 
 .md-tile-content {
   text-shadow:1px 1px rgba(0,0,0,0.2);
+  padding:0 10px 10px 15px;
 }
 
 .md-tile-content h3 {
@@ -380,7 +381,7 @@ md-toolbar#top-view {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-  height:1.1em;
+  height:1.2em;
 }
 
 #tall-image{
@@ -411,6 +412,9 @@ md-select.md-default-theme:not([disabled]):focus .md-select-label {
   border: none;
 }
 
+md-toolbar.md-default-theme .md-button {
+  color: #fff;
+}
 
 body:after{
     display:none;
