@@ -283,10 +283,15 @@ figure {
   -o-transform: rotateY( 0deg ) translateZ( 5px );
   -ms-transform: rotateY(   0deg ) translateZ( 5px ); 
   transform: rotateY( 0deg ) translateZ( 5px ); 
+
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+  -o-backface-visibility:hidden;
+  -moz-backface-visibility:hidden;
   
   width:100%;
   height:100%;
-  border:10px solid rgba(255,255,255,1);
+  border:12px solid rgba(255,255,255,1);
 }
 #prism .back   { 
   -webkit-transform: rotateX( 180deg ) translateZ( 5px ); 
@@ -296,7 +301,7 @@ figure {
   transform: rotateX( 180deg ) translateZ( 5px ); 
   width:100%;
   height:100%;
-  border:10px solid rgba(255,255,255,1);
+  border:12px solid rgba(255,255,255,1);
 }
 #prism .right  { 
   -webkit-transform: rotateY(  90deg ) translateZ( 465px );
@@ -370,10 +375,6 @@ figure {
   border:10px solid rgba(255,255,255,1);
   margin:0;
   box-sizing:border-box;
-  backface-visibility:hidden;
-  -webkit-backface-visibility:hidden;
-  -o-backface-visibility:hidden;
-  -moz-backface-visibility:hidden;
 }
 
 md-toolbar {
@@ -449,11 +450,11 @@ body:after{
     height:200px;
   }
   #prism .bottom { 
-    -webkit-transform: rotateX( -90deg ) translateZ( 145px ); 
-    -moz-transform: rotateX( -90deg ) translateZ( 145px ); 
-    -o-transform: rotateX( -90deg ) translateZ( 145px ); 
-    -ms-transform: rotateX( -90deg ) translateZ( 145px ); 
-    transform: rotateX( -90deg ) translateZ( 145px ); 
+    -webkit-transform: rotateX( -90deg ) translateZ( 195px ); 
+    -moz-transform: rotateX( -90deg ) translateZ( 195px ); 
+    -o-transform: rotateX( -90deg ) translateZ( 195px ); 
+    -ms-transform: rotateX( -90deg ) translateZ( 195px ); 
+    transform: rotateX( -90deg ) translateZ( 195px ); 
     height:10px;
     width:100%;
   }
