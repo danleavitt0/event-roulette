@@ -178,7 +178,7 @@ md-select {
   letter-spacing: 20px;
   text-transform: uppercase;
   margin-right: -20px;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 .box-shadow-menu {
@@ -458,7 +458,9 @@ body:after{
     height:10px;
     width:100%;
   }
-
+  .md-tile-content h4 {
+    font-size:0.8em;
+  }
   .button-container {
     margin:15px;
   }
