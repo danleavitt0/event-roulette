@@ -50,7 +50,7 @@ app.filter('LessThanPrice', function(FilterData){
 app.factory('FilterData', function(){
   return {
     maxPrice:0,
-    priceValue:0,
+    priceValue:10001,
     categoryCode:[103,105,108,110],
     city:'Choose City',
     date:undefined
