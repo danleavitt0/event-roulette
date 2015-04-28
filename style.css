@@ -1,10 +1,20 @@
 @font-face {
-  font-family: 'Benton';
-  src: url('/fonts/BentonSans-Bold.otf') format('otf');
+  font-family: 'Benton-Black';
+  src: url('/fonts/Benton_Sans/BentonSans-Black.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Benton-Medium';
+  src: url('/fonts/Benton_Sans/BentonSans-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Benton-Book';
+  src: url('/fonts/Benton_Sans/BentonSans-Book.otf') format('opentype');
 }
 
 html {
-  font-family:'Benton', Fallback, sans-serif;
+  font-family:'Benton-Medium', Fallback, sans-serif;
 }
 
 md-list{
@@ -176,13 +186,13 @@ md-select {
 }
 
 .full-gradient h1 {
+  font-family: 'Benton-Medium', Fallback, sans-serif;
   text-shadow: 1px 1px rgba(0,0,0,0.2);
-  font-size: 8em;
+  font-size: 7.2em;
   margin: 0;
   letter-spacing: 20px;
   text-transform: uppercase;
   margin-right: -20px;
-  margin-top: 5px;
 }
 
 .box-shadow-menu {
@@ -438,6 +448,10 @@ md-toolbar.md-default-theme .md-button {
 body:after{
     display:none;
     content: url('/public/images/mf2.jpg') url('/public/images/food.jpg') url('/public/images/film.jpg') url('/public/images/arts.jpg') url('/public/images/sports.jpg');
+}
+
+md-option{
+  font-family:'Benton-Book', Fallback, sans-serif;
 }
 
 #footer{
