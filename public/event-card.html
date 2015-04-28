@@ -1,7 +1,7 @@
 <md-item-content class="full-height" layout="row">
   <div class="md-tile-content">
     <h3 style="font-size:1.2em"> {{visibleEvent.name.text}} </h3>
-    <h4 ng-show="visibleEvent.series_id"> Multiple dates {{visibleEvent.start.local | date: "'at' h:mm a" }}: {{visibleEvent.ticket_classes[0].cost.display || 'free'}} </h4>
+    <h4 ng-show="visibleEvent.series_id"> Multiple dates {{visibleEvent.start.local | date: "'at' h a" }}: {{visibleEvent.ticket_classes[0].cost.display || 'free'}} </h4>
     <h4 ng-hide="visibleEvent.series_id"> {{visibleEvent.start.local | date:"MMMM d 'at' h:mm a" }}: {{visibleEvent.ticket_classes[0].cost.display || 'free'}} </h4>
   </div>
 </md-item-content>
