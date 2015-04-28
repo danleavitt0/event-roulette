@@ -410,7 +410,7 @@ md-toolbar#top-view {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-  height: 2.3em;
+  height: 2.8em;
 }
 
 #tall-image{
@@ -473,6 +473,7 @@ md-option{
     font-size:6em;
     letter-spacing: 5px;
     margin-right: -10px;
+    line-height:1.5em;
   }
   #header {
     font-size:2em;
@@ -507,7 +508,7 @@ md-option{
     margin:15px;
   }
   #container{
-    margin-bottom:25%;
+    margin-bottom:35%;
   }
 
 }
