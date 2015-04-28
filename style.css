@@ -25,6 +25,10 @@ h2 {
   margin:0;
 }
 
+#container{
+  margin-bottom:2%;
+}
+
 #menus {
   -webkit-margin-before: 0;
   -ms-margin-before: 0;
@@ -436,7 +440,21 @@ body:after{
     content: url('/public/images/mf2.jpg') url('/public/images/food.jpg') url('/public/images/film.jpg') url('/public/images/arts.jpg') url('/public/images/sports.jpg');
 }
 
+#footer{
+  position: absolute;
+  left:0;
+  right:0;
+  bottom:3%;
+}
+
+#footer img{
+  width:250px;
+}
+
 @media (max-width:600px) {
+  .page-container{
+    min-height:700px;
+  }
   .full-gradient h1{
     font-size:6em;
     letter-spacing: 5px;
@@ -473,6 +491,9 @@ body:after{
   }
   .button-container {
     margin:15px;
+  }
+  #container{
+    margin-bottom:25%;
   }
 
 }

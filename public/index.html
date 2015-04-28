@@ -25,50 +25,57 @@
     <md-container class="page-container" layout="column">
       <md-toolbar ng-show="loaded" image-load ng-init="newImage = '/public/images/arts.jpg'; loaded = false;" id="tall-image" class="md-tall" ng-style="{'background-image':'url(' + newImage + ')'}">
         <div class="full-gradient" layout="column" layout-align="center center">
-        <h2 id="header"> Ready to play Event Roulette?</h2>
-          <div spin-button ng-class="{pointer: !visibleEvent, default: visibleEvent}" class="button-container" layout="column" layout-align="center" ng-click="visibleEvent || wheelSpin(true)"></div>
-          <div>
-            <h3 id="menus" layout="column" layout-gt-sm="row">
-              <span>
-                <md-select auto-blur ng-init="filterData.city = 'Choose City'" ng-model="filterData.city">
-                  <md-option ng-hide="true" ng-value="'Choose City'">Choose City</md-option>
-                  <md-option ng-value="'San Francisco'">San Francisco</md-option>
-                  <md-option ng-value="'Los Angeles'">Los Angeles</md-option>
-                  <md-option ng-value="'Chicago'">Chicago</md-option>
-                  <md-option ng-value="'New York'">New York</md-option>
-                  <md-option ng-value="'Atlanta'">Atlanta</md-option>
-                  <md-option ng-value="'Boston'">Boston</md-option>
-                </md-select>
-              </span> 
-              <span>
-                <md-select auto-blur ng-init="filterData.category = 'Any Category'" ng-model="filterData.category">
-                  <md-option ng-value="'Any Category'">Any Category</md-option>
-                  <md-option ng-value="'Music'">Music</md-option>
-                  <md-option ng-value="'Food & Drink'">Food & Drink</md-option>
-                  <md-option ng-value="'Arts & Entertainment'">Arts & Entertainment</md-option>
-                  <md-option ng-value="'Sports & Fitness'">Sports & Fitness</md-option>
-                </md-select>
-              </span>
-              <span>
-                <md-select update-category auto-blur ng-init="filterData.date = 'This Week'" ng-model="filterData.date">
-                  <md-option ng-value="'Any Time'">Any Time</md-option>
-                  <md-option ng-value="'Today'">Today</md-option>
-                  <md-option ng-value="'This Week'">This Week</md-option>
-                  <md-option ng-value="'This Weekend'">This Weekend</md-option>
-                  <md-option ng-value="'This Month'">This Month</md-option>
-                </md-select>
-              </span>
-              <span>
-                <md-select auto-blur ng-init="price = 'Any Price'" ng-model="price">
-                  <md-option ng-click="filterData.priceValue = 0" ng-value="'Free'">Free</md-option>
-                  <md-option ng-click="filterData.priceValue = 1000" ng-value="'Under $10'">Under $10</md-option>
-                  <md-option ng-click="filterData.priceValue = 2500" ng-value="'Under $25'">Under $25</md-option>
-                  <md-option ng-click="filterData.priceValue = 5000" ng-value="'Under $50'">Under $50</md-option>
-                  <md-option ng-click="filterData.priceValue = 10000" ng-value="'Under $100'">Under $100</md-option>
-                  <md-option ng-click="filterData.priceValue = 10001" ng-value="'Any Price'">Any Price</md-option>
-                </md-select>
-              </span>
-            </h3>
+          <div id="container" layout="column" layout-align="center center">
+            <h2 id="header"> Ready to play Event Roulette?</h2>
+            <div spin-button ng-class="{pointer: !visibleEvent, default: visibleEvent}" class="button-container" layout="column" layout-align="center" ng-click="visibleEvent || wheelSpin(true)"></div>
+            <div>
+              <h3 id="menus" layout="column" layout-gt-sm="row">
+                <span>
+                  <md-select auto-blur ng-init="filterData.city = 'Choose City'" ng-model="filterData.city">
+                    <md-option ng-hide="true" ng-value="'Choose City'">Choose City</md-option>
+                    <md-option ng-value="'San Francisco'">San Francisco</md-option>
+                    <md-option ng-value="'Los Angeles'">Los Angeles</md-option>
+                    <md-option ng-value="'Chicago'">Chicago</md-option>
+                    <md-option ng-value="'New York'">New York</md-option>
+                    <md-option ng-value="'Atlanta'">Atlanta</md-option>
+                    <md-option ng-value="'Boston'">Boston</md-option>
+                  </md-select>
+                </span> 
+                <span>
+                  <md-select auto-blur ng-init="filterData.category = 'Any Category'" ng-model="filterData.category">
+                    <md-option ng-value="'Any Category'">Any Category</md-option>
+                    <md-option ng-value="'Music'">Music</md-option>
+                    <md-option ng-value="'Food & Drink'">Food & Drink</md-option>
+                    <md-option ng-value="'Arts & Entertainment'">Arts & Entertainment</md-option>
+                    <md-option ng-value="'Sports & Fitness'">Sports & Fitness</md-option>
+                  </md-select>
+                </span>
+                <span>
+                  <md-select update-category auto-blur ng-init="filterData.date = 'This Week'" ng-model="filterData.date">
+                    <md-option ng-value="'Any Time'">Any Time</md-option>
+                    <md-option ng-value="'Today'">Today</md-option>
+                    <md-option ng-value="'This Week'">This Week</md-option>
+                    <md-option ng-value="'This Weekend'">This Weekend</md-option>
+                    <md-option ng-value="'This Month'">This Month</md-option>
+                  </md-select>
+                </span>
+                <span>
+                  <md-select auto-blur ng-init="price = 'Any Price'" ng-model="price">
+                    <md-option ng-click="filterData.priceValue = 0" ng-value="'Free'">Free</md-option>
+                    <md-option ng-click="filterData.priceValue = 1000" ng-value="'Under $10'">Under $10</md-option>
+                    <md-option ng-click="filterData.priceValue = 2500" ng-value="'Under $25'">Under $25</md-option>
+                    <md-option ng-click="filterData.priceValue = 5000" ng-value="'Under $50'">Under $50</md-option>
+                    <md-option ng-click="filterData.priceValue = 10000" ng-value="'Under $100'">Under $100</md-option>
+                    <md-option ng-click="filterData.priceValue = 10001" ng-value="'Any Price'">Any Price</md-option>
+                  </md-select>
+                </span>
+              </h3>
+            </div>
+            <div id="footer">
+              <a onclick="window.open('https://twitter.com/intent/tweet?text=Hello+World','name','width=600,height=400')">
+                <img src="/public/images/logo.png" />
+              </a>
+            </div>
           </div>
         </div>
       </md-toolbar>
