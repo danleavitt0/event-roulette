@@ -407,6 +407,14 @@ md-toolbar#top-view {
   z-index:999;
 }
 
+#footer #twitter {
+  background-image:url("/public/images/twitter.png");
+}
+
+#footer #facebook {
+  background-image:url("/public/images/facebook.png");
+}
+
 .md-tile-content {
   text-shadow:1px 1px rgba(0,0,0,0.2);
   padding:0 10px 10px 15px;
@@ -462,15 +470,30 @@ md-option{
   font-family:'Benton-Book', Fallback, sans-serif;
 }
 
-#footer{
+#footer {
   position: absolute;
-  left:0;
-  right:0;
-  bottom:3%;
+  left: 60px;
+  right: 0;
+  bottom: 3%;
 }
 
-#footer img{
+#footer #logo{
   width:250px;
+}
+
+#footer .icon {
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  margin: 0 0 8px 0;
+}
+
+#footer a {
+  cursor:pointer;
+}
+
+#footer #icon-holder {
+  margin-left: 20px;
 }
 
 @media (max-width:910px) {

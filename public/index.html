@@ -71,10 +71,22 @@
                 </span>
               </h3>
             </div>
-            <div id="footer">
-              <a onclick="window.open('https://twitter.com/intent/tweet?text=Hello+World','name','width=600,height=400')">
-                <img src="/public/images/logo.png" />
-              </a>
+            <div id="footer" layout="row" layout-align="center center">
+              <div>
+                <img id="logo" src="/public/images/logo.png" />
+              </div>
+              <div id="icon-holder" layout="column" layout-align="center center">
+                <div>
+                  <a>
+                    <div id="twitter" class="icon"></div>
+                 </a>
+               </div>
+               <div>
+                <a>
+                  <div id="facebook" class="icon"></div>
+                </a>
+              </div>
+              </div>
             </div>
           </div>
         </div>
