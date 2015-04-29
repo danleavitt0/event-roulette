@@ -78,12 +78,24 @@
               <div id="icon-holder" layout-sm="row" layout="column" layout-align="center center">
                 <div>
                   <a>
-                    <div id="twitter" class="icon"></div>
+                    <div 
+                      ng-class="{twitter:hover.twitter}"
+                      ng-mouseenter="hover.twitter = true" 
+                      ng-mouseleave="hover.twitter = false"
+                      id="twitter" 
+                      class="icon">
+                    </div>
                  </a>
                </div>
                <div>
                 <a>
-                  <div id="facebook" class="icon"></div>
+                  <div 
+                    id="facebook" 
+                    ng-class="{facebook:hover.facebook}"
+                    ng-mouseenter="hover.facebook = true" 
+                    ng-mouseleave="hover.facebook = false"
+                    class="icon">
+                  </div>
                 </a>
               </div>
               </div>

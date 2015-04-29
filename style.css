@@ -408,11 +408,21 @@ md-toolbar#top-view {
 }
 
 #footer #twitter {
+  border-radius:50%;
   background-image:url("/public/images/twitter.png");
 }
 
+#footer #twitter.twitter{
+  background-color: rgba(85, 172, 238,0.8);
+}
+
 #footer #facebook {
+  border-radius:50%;
   background-image:url("/public/images/facebook.png");
+}
+
+#footer #facebook.facebook{
+  background-color:rgba(63,92,154,0.8)
 }
 
 .md-tile-content {
@@ -486,6 +496,11 @@ md-option{
   height: 40px;
   background-size: cover;
   margin: 0 0 8px 0;
+  transition:all .3s ease-in-out;
+  -webkit-transition:all .3s ease-in-out;
+  -moz-transition:all .3s ease-in-out;
+  -o-transition:all .3s ease-in-out;
+  -ms-transition:all .3s ease-in-out;
 }
 
 #footer a {
@@ -549,6 +564,12 @@ md-option{
   }
   #footer {
     left:0;
+  }
+  #footer .icon{
+    margin:0 5px;
+  }
+  #footer #icon-holder{
+    margin:5px 0px;
   }
   .page-container{
     min-height:800px;
