@@ -547,5 +547,10 @@ md-option{
   #container{
     margin-bottom:35%;
   }
-
+  #footer {
+    left:0;
+  }
+  .page-container{
+    min-height:800px;
+  }
 }
