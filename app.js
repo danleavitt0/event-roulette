@@ -15,6 +15,11 @@
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
 
+    // app.get('/getTwitterMessage', function(req,res){
+    //   request({url:"https://twitter.com/intent/tweet"}, function(err,body,response){
+    //     res.send(response);
+    //   })
+    // })
 
     app.get('/getEvents', function(req,res) {
       var query = req.query;

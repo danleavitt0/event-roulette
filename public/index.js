@@ -162,7 +162,7 @@ app.directive('imageLoad', function($http, ngProgress) {
   }
 });
 
-app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $mdToast, $q, $animate, FilterData, Events){
+app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $mdSidenav, $mdToast, $q, $animate, FilterData, Events){
   $scope.filterData = FilterData;
   $scope.spinning = false;
   $scope.date = "Choose Date";
@@ -357,5 +357,18 @@ app.controller('SpinWheel', function($filter,$scope,$http,$mdSidenav, $mdToast, 
         },1500)
       }
     }
+  }
+
+  function getWindowParams(w,h){
+    var width = $window.innerWidth;
+    var height = $window.innerHeight;
+    var left = width / 2 - w/2;
+    var top = height /2 - h/2;
+    return "left="+left+", top="+top+", width="+w+", height="+h;
+  }
+
+  $scope.showFacebook = function(){
+    console.log($window.innerWidth, $window.innerHeight);
+    $window.open("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fevent-roulette.herokuapp.com", "", getWindowParams(550,210))
   }
 });
