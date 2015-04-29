@@ -153,10 +153,11 @@ app.directive('imageLoad', function($http, ngProgress) {
       .then(function(){
         setTimeout(function(){
           scope.$apply(function(){
+            console.log('done');
             ngProgress.complete();
             scope.loaded = true;  
           })
-        },500)
+        },100)
       });
     }
   }
