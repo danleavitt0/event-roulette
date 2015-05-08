@@ -422,7 +422,7 @@ md-toolbar#top-view {
 }
 
 #footer #facebook.facebook{
-  background-color:rgba(63,92,154,0.8)
+  background-color:rgba(63,92,154,0.9)
 }
 
 .md-tile-content {
@@ -560,7 +560,7 @@ md-option{
     margin:15px;
   }
   #container{
-    margin-bottom:35%;
+    margin-bottom:45%;
   }
   #footer {
     left:0;
