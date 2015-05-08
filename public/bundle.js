@@ -47180,7 +47180,7 @@ var categories = {
   },
   'Music': {
     categoryCode: 103, 
-    url: '/public/images/mf2.jpg'
+    url: '/public/images/music.png'
   },
   'Arts & Entertainment': {
     categoryCode: 105,
@@ -47188,7 +47188,7 @@ var categories = {
   },
   'Sports & Fitness': {
     categoryCode: 108,
-    url:'/public/images/sports.jpg'
+    url:'/public/images/yoga_brighter.png'
   }
 };
 
@@ -47463,13 +47463,8 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
         })
       }
       else {
-        $scope.initSpin = 'init';
-        setTimeout(function(){
-          $scope.$apply(function(){
-            $scope.initSpin = 'spinning';
-            $scope.watchForFound = $scope.$on('found', eventFound);
-          });
-        },1500)
+        $scope.initSpin = 'spinning';
+        $scope.$on('found', eventFound);
       }
     }
   }
@@ -47513,7 +47508,6 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
   }
 
   function eventFound(){
-    $scope.watchForFound();
     findEvent($scope.events);
     $scope.initSpin = 'spinningOut';
   }
