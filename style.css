@@ -473,7 +473,7 @@ md-toolbar.md-default-theme .md-button {
 
 body:after{
     display:none;
-    content: url('/public/images/music.png') url('/public/images/eater_original.png') url('/public/images/arts.jpg') url('/public/images/yoga_brighter.png');
+    content: url('/public/images/musicband_brighter.png') url('/public/images/eater_original.png') url('/public/images/aande_bandw.png') url('/public/images/yoga_brighter.png');
 }
 
 md-option{
