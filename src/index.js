@@ -1,7 +1,8 @@
 var angular = require('angular'),
-    _ = require('lodash')
-    ngMaterial = require('angular-material')
-    ngAnimate= require('angular-animate')
+    _ = require('lodash'),
+    ngMaterial = require('angular-material'),
+    ngAnimate= require('angular-animate'),
+    ngAria = require('angular-aria')
 
 
 var categories = {
