@@ -473,7 +473,7 @@ md-toolbar.md-default-theme .md-button {
 
 body:after{
     display:none;
-    content: url('/public/images/mf2.jpg') url('/public/images/food.jpg') url('/public/images/film.jpg') url('/public/images/sports.jpg');
+    content: url('/public/images/mf2.jpg') url('/public/images/eater_original.png') url('/public/images/arts.jpg') url('/public/images/sports.jpg');
 }
 
 md-option{

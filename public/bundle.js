@@ -47176,7 +47176,7 @@ var categories = {
   },
   'Food & Drink': {
     categoryCode: 110,
-    url: '/public/images/food.jpg'
+    url: '/public/images/eater_original.png'
   },
   'Music': {
     categoryCode: 103, 
@@ -47409,16 +47409,6 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
     }
   }
 
-  var clearRequest = function(request){
-    if(_.isArray(request)) {
-      _.each(request, function(el){
-        clearRequest(el);
-      })
-    }
-    else
-      $scope.requests.splice($scope.requests.indexOf(request), 1);
-  };
-  
   $scope.spin = function(cb){
     if($scope.filterData.city != 'Choose City'){
       if($scope.requests.length > 0) {
@@ -47435,47 +47425,19 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
     }
   }
 
-  function findEvent(events) {
-    $scope.visibleEvent = undefined;
-    events = $filter('LessThanPrice')(events);
-    events = _.reject(events, function(obj,idx){
-      var list = []
-      for(var i = 0; i < $scope.usedEvents.length; i++) {
-        if (obj.id === $scope.usedEvents[i].id)
-          list.push(obj)
-      }
-      if(list.length > 0)
-        return obj;
-    });
-    if(_.isEmpty(events)) {
-      toast('No more events. Try changing the filter options.');
-      return;
-    }
-    $scope.events = events;
-    var idx = Math.floor(Math.random() * events.length);
-    $scope.visibleEvent = _.clone(events[idx]);
-    $scope.visibleEvent.url = addTracking($scope.visibleEvent.url);
-    $scope.usedEvents.push(events[idx]);
-  }
-    
   $scope.orderingDate = function(item) {
     return item.start.utc;
   };
 
-  function initCity(city){
-    FilterData.city = city;
-  }
-
-  function animateAndRemove(element, name, cb){
-    cb = cb || function(){};
-    $animate.addClass(element, name)
-    .then(function(){
-      $scope.$apply(function(){
-        $animate.removeClass(element, name);
-      });
-      cb();
-    });
-  }
+  var clearRequest = function(request){
+    if(_.isArray(request)) {
+      _.each(request, function(el){
+        clearRequest(el);
+      })
+    }
+    else
+      $scope.requests.splice($scope.requests.indexOf(request), 1);
+  };
 
   $scope.getCategory = function(cat) {
     var image = angular.element(document.getElementsByClassName('full-gradient'));
@@ -47485,21 +47447,6 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
         $scope.newImage = categories[cat].url;
       })
     });
-  }
-
-  function eventFound(){
-    $scope.watchForFound();
-    findEvent($scope.events);
-    $scope.initSpin = 'spinningOut';
-  }
-
-  function toast(message){
-    $mdToast.show(
-      $mdToast.simple()
-        .content(message)
-        .position('top right')
-        .action('OK')
-    );
   }
 
   $scope.wheelSpin = function(e) {
@@ -47525,6 +47472,59 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
         },1500)
       }
     }
+  }
+
+  function initCity(city){
+    FilterData.city = city;
+  }
+
+  function findEvent(events) {
+    $scope.visibleEvent = undefined;
+    events = $filter('LessThanPrice')(events);
+    events = _.reject(events, function(obj,idx){
+      var list = []
+      for(var i = 0; i < $scope.usedEvents.length; i++) {
+        if (obj.id === $scope.usedEvents[i].id)
+          list.push(obj)
+      }
+      if(list.length > 0)
+        return obj;
+    });
+    if(_.isEmpty(events)) {
+      toast('No more events. Try changing the filter options.');
+      return;
+    }
+    $scope.events = events;
+    var idx = Math.floor(Math.random() * events.length);
+    $scope.visibleEvent = _.clone(events[idx]);
+    $scope.visibleEvent.url = addTracking($scope.visibleEvent.url);
+    $scope.usedEvents.push(events[idx]);
+  }
+
+  function animateAndRemove(element, name, cb){
+    cb = cb || function(){};
+    $animate.addClass(element, name)
+    .then(function(){
+      $scope.$apply(function(){
+        $animate.removeClass(element, name);
+      });
+      cb();
+    });
+  }
+
+  function eventFound(){
+    $scope.watchForFound();
+    findEvent($scope.events);
+    $scope.initSpin = 'spinningOut';
+  }
+
+  function toast(message){
+    $mdToast.show(
+      $mdToast.simple()
+        .content(message)
+        .position('top right')
+        .action('OK')
+    );
   }
 
   function getWindowParams(w,h){
