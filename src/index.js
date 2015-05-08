@@ -8,7 +8,7 @@ var angular = require('angular'),
 var categories = {
   'Any Category': {
     categoryCode: [103,105,108,110],
-    url: '/public/images/arts.jpg'
+    url: '/public/images/aande_bandw.png'
   },
   'Food & Drink': {
     categoryCode: 110,
@@ -16,11 +16,11 @@ var categories = {
   },
   'Music': {
     categoryCode: 103, 
-    url: '/public/images/music.png'
+    url: '/public/images/musicband_brighter.png'
   },
   'Arts & Entertainment': {
     categoryCode: 105,
-    url: '/public/images/arts.jpg'
+    url: '/public/images/aande_bandw.png'
   },
   'Sports & Fitness': {
     categoryCode: 108,
@@ -174,6 +174,7 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
   $scope.holder = [];
   $scope.requests = [];
   $scope.id = 1;
+  $scope.newImage = categories['Any Category'].url;
 
   _.each(_.keys($scope.filterData), function(key){
     $scope.$watch('filterData.'+key, function(){
