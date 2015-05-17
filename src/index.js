@@ -92,7 +92,7 @@ app.factory('Events', function($http, $q, FilterData){
         'venue.city':FilterData.city,
         'start_date.keyword':getDate,
         'categories':categories,
-        'page':0
+        'page':1
       }
     })
     .success(function(response){
@@ -256,6 +256,7 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
       $scope.requests.push(request);
       request.promise.then(function(response){
         $scope.events = response.data.events;
+        console.log(response)
         clearRequest(request);
         $scope.$emit('found');
       });

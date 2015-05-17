@@ -23,15 +23,14 @@
         'venue.city':query['venue.city'],
         'start_date.keyword':query['start_date.keyword'],
         'categories':query.categories,
-        'popular':query.isPopular,
-        'page':query.page
+        'page':1
       }
 
-      request({url:url, qs:params}, function(err,body,response){
-        if(err)
-          res.status(500).send(err)
-        res.send(response);
-      });
+      console.log(params)
+
+      request.get({url:url, qs:params}, function(err, data, response ){
+        res.send(response)
+      })
 
     });
 

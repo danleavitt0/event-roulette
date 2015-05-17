@@ -36,7 +36,7 @@ h2 {
 }
 
 #container{
-  margin-bottom:8%;
+  margin-bottom:10%;
 }
 
 #menus {
@@ -53,6 +53,7 @@ md-toolbar.md-default-theme{
 
 #header {
   font-size:3em;
+  letter-spacing: 3px;
 }
 
 .page-container{
@@ -146,7 +147,7 @@ md-toolbar.md-default-theme{
 }
 
 .md-select-label{
-  line-height: 1em;
+  line-height: 1.2em;
 }
 
 .pointer:hover {
@@ -482,20 +483,24 @@ md-option{
 
 #footer {
   position: absolute;
-  left: 60px;
+  left: 0;
   right: 0;
-  bottom: 3%;
+  bottom: 2%;
 }
 
 #footer #logo{
   width:250px;
 }
 
+#footer #icon-holder{
+  margin:5px 0px;
+}
+
 #footer .icon {
   width: 40px;
   height: 40px;
   background-size: cover;
-  margin: 0 0 8px 0;
+  margin: 0 5px;
   transition:all .3s ease-in-out;
   -webkit-transition:all .3s ease-in-out;
   -moz-transition:all .3s ease-in-out;
@@ -518,12 +523,15 @@ md-option{
   #container{
     margin-bottom:15%;
   }
+  .page-container{
+    min-height: 800px;
+  }
 }
 
 @media (max-width:600px) {
   .full-gradient h1{
     font-size:6em;
-    letter-spacing: 5px;
+    letter-spacing: 8px;
     margin-right: -10px;
     line-height:1.5em;
   }
@@ -531,7 +539,7 @@ md-option{
     font-size:2em;
   }
   .spin-container {
-    width:300px;
+    width:330px;
     height:200px;
   }
   #prism .bottom { 
@@ -544,11 +552,11 @@ md-option{
     width:100%;
   }
   #prism .right {
-    -webkit-transform: rotateY( 90deg ) translateZ( 465px );
-    -moz-transform: rotateY( 90deg ) translateZ( 465px );
-    -o-transform: rotateY( 90deg ) translateZ( 465px );
-    -ms-transform: rotateY( 90deg ) translateZ( 465px );
-    transform: rotateY( 90deg ) translateZ( 295px );
+    -webkit-transform: rotateY( 90deg ) translateZ( 325px );
+    -moz-transform: rotateY( 90deg ) translateZ( 325px );
+    -o-transform: rotateY( 90deg ) translateZ( 325px );
+    -ms-transform: rotateY( 90deg ) translateZ( 325px );
+    transform: rotateY( 90deg ) translateZ( 325px );
     height: 100%;
     width: 10px;
     border: 5px solid rgba(255,255,255,1);
@@ -561,15 +569,6 @@ md-option{
   }
   #container{
     margin-bottom:45%;
-  }
-  #footer {
-    left:0;
-  }
-  #footer .icon{
-    margin:0 5px;
-  }
-  #footer #icon-holder{
-    margin:5px 0px;
   }
   .page-container{
     min-height:800px;
