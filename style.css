@@ -516,7 +516,7 @@ md-option{
   margin-left: 20px;
 }
 
-@media (max-width:910px) {
+@media (max-width:1010px) {
   #header {
     font-size:2.2em;
   }
