@@ -512,10 +512,6 @@ md-option{
   cursor:pointer;
 }
 
-#footer #icon-holder {
-  margin-left: 20px;
-}
-
 @media (max-width:1010px) {
   #header {
     font-size:2.2em;
