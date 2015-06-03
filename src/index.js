@@ -256,7 +256,6 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
       $scope.requests.push(request);
       request.promise.then(function(response){
         $scope.events = response.data.events;
-        console.log(response)
         clearRequest(request);
         $scope.$emit('found');
       });
