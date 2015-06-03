@@ -338,9 +338,7 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
     cb = cb || function(){};
     $animate.addClass(element, name)
     .then(function(){
-      $scope.$apply(function(){
-        $animate.removeClass(element, name);
-      });
+      $animate.removeClass(element, name);
       cb();
     });
   }
