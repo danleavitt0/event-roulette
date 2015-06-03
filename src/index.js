@@ -368,6 +368,6 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
   }
 
   $scope.showFacebook = function(){
-    $window.open("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fevent-roulette.herokuapp.com", "", getWindowParams(550,210))
+    $window.open("https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fevent-roulette.com", "", getWindowParams(550,210))
   }
 });
