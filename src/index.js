@@ -15,7 +15,7 @@ var categories = {
     url: '/public/images/eater_original.png'
   },
   'Music': {
-    categoryCode: 103, 
+    categoryCode: 103,
     url: '/public/images/musicband_brighter.png'
   },
   'Arts & Entertainment': {
@@ -84,7 +84,7 @@ app.factory('Events', function($http, $q, FilterData){
     }
 
     var promise = $http({
-      'method':'GET', 
+      'method':'GET',
       'url':'/getEvents',
       'cache':true,
       'timeout':canceller.promise,
@@ -144,7 +144,7 @@ app.directive('updateCategory', function(){
   }
 })
 
-app.directive('imageLoad', function($http) {  
+app.directive('imageLoad', function($http) {
   return {
     restrict: 'A',
     link: function(scope, element, attrs) {
@@ -158,7 +158,7 @@ app.directive('imageLoad', function($http) {
       .then(function(){
         setTimeout(function(){
           scope.$apply(function(){
-            scope.loaded = true;  
+            scope.loaded = true;
           })
         },200)
       });
@@ -193,7 +193,7 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
-    } 
+    }
     //Get the latitude and the longitude;
 
     function successFunction(position) {
@@ -235,7 +235,7 @@ app.controller('SpinWheel', function($window, $filter,$scope,$http,$mdDialog, $m
             var city = results[0].address_components[3].long_name;
             FilterData.city = _.contains(validCities, city) ? city : 'Choose City';
           })
-          
+
           } else {
             console.log("No results found");
           }

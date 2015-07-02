@@ -23,12 +23,10 @@
         'venue.city':query['venue.city'],
         'start_date.keyword':query['start_date.keyword'],
         'categories':query.categories,
-        'page':1
+        'expand': 'ticket_classes'
       }
 
-      console.log(params)
-
-      request.get({url:url, qs:params}, function(err, data, response ){
+      request.get({url:url, qs:params}, function(err, data, response){
         res.send(response)
       })
 
